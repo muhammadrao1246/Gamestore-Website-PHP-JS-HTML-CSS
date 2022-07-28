@@ -1,0 +1,275 @@
+@media screen and (max-width:600px){
+    .header{
+        flex-direction: column;
+
+    }
+    .left-header{
+        flex-direction: column;
+    }
+    .right-header{
+        flex-direction: column;
+        row-gap: 10px;
+    }
+}
+
+body{
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    margin:0;
+    background-image:url("/practice/john wick.jpg") ;
+    background-position: center;
+    background-repeat: unset;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+
+.header{
+    position:sticky;
+    padding:10px 20px;
+    display:flex;
+    width:100%;
+    background-color: white;
+}
+.left-header{
+    display:flex;
+    padding:inherit;
+    column-gap: 15px;
+    width:60%;
+}
+.right-header{
+    display: flex;
+    padding:inherit;
+    column-gap: 15px;
+    justify-content: right;
+    width:30%;
+}
+a{
+    color:black;
+}
+.left-head-anchors{
+    padding: 8px 7px;
+    text-decoration: none;
+    font: 22px calibri;
+    border-radius: 2px ;
+    transition:all 0.3s ease-out;
+}
+.left-head-anchors:hover{
+    background-color: black;
+    color: white;
+    transition:all 0.2s ease-in;
+}
+.right-head-anchor{
+    padding: 8px 18px;
+    text-decoration: none;
+    font: 22px calibri;
+    background-color: black;
+    color: white;
+    border-radius: 2px;
+    transition: all 0.3s ease-out;
+}
+.right-head-anchor:hover{
+    box-shadow: lightgrey 0px 0px 5px ;
+    border-radius: 5px;
+    transition: all 0.2s ease-in;
+    
+}
+div[name="games"]{
+    display:flex;
+    column-gap: 2px;
+    flex-direction: column;
+}
+div[name="games"] .dropdown{
+    display: none;
+    height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 5px;
+    position: absolute;
+    background-color: white;
+    
+}
+div[name="games"]:hover .dropdown{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.dropdown > a{
+    font-size: 16px;
+    width:max-content;
+}
+
+
+
+.section{
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    position:inherit;
+    margin:10px auto;
+    width:90%;
+    padding: 20px;
+    display: grid;
+    background-color: white;
+}
+img{
+    width: 250px;
+    height: 190px;
+}
+
+.nav-panel{
+    display: flex;
+    padding: 10px;
+    font-size:20px;
+}
+
+.navigation-panel{    
+    font: 18px calibri;
+    background-color: lightgray;
+    padding: 10px 10px;
+    width:100%;
+}
+
+.navigation-path{
+    color: black;
+    text-decoration: none;
+}
+
+.navigation-path:hover{
+    text-decoration: underline;
+}
+
+.gallery{
+    padding: 10px;
+    display: grid;
+    row-gap: 30px;
+}
+.item{
+    overflow-x: hidden;
+    padding: 10px;
+    border: 1px solid black;
+    display: flex;
+    column-gap: 20px;
+}
+.product-detail{
+    display: block;
+    margin: 2px 0px;
+    place-items:10px;
+    line-break:anywhere;
+    font-family:Arial, Helvetica, sans-serif;
+}
+h2{
+    margin:0;
+    font:bold 35px ;
+}
+label{
+    color:white;
+    background-color: black;
+    border-radius: 5px 0px 0px 5px;
+    padding:5px 4px;
+}
+p{
+    margin:8px 0px;
+    padding:4px;
+    padding-left: 0px;
+    padding-right: 5px;
+    border-radius: 5px;
+    background-color: rgb(116 115 115 / 13%);
+}
+code{
+    font-size: 14px;
+    padding:0px 5px;
+}
+#desc{
+    overflow: hidden;
+    max-height: 71px;
+}
+#desc > code{
+    letter-spacing: 0.1px;
+    word-spacing: -2.8px;
+    line-height: 2;
+    font-size: 12px;
+    font-weight: 200;
+}
+
+.game-nav{
+    display: flex;
+    column-gap: 12px;
+    margin:auto;
+    width:80%;
+    justify-content: space-between;
+    padding:10px;
+    border: 1px;
+}
+
+.nav-button{
+    color:white;
+    background-color: #019aff;
+    border-radius: 5px;
+    padding:12px 17px;
+    text-decoration: none;
+    font:20px calibri;
+    transition: 0.3s all;
+}
+
+.nav-button:hover{
+    background-color: black;
+    transition: 0.5s all;
+}
+
+.nav-button-active{
+    background-color: green;
+}
+
+.nav-button-num{
+    width: min-content;
+    column-gap: 9px;
+    display: flex;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    overflow-x: auto;
+}
+
+.nav-button-num::-webkit-scrollbar{
+    height: 10px;
+
+}
+
+::-webkit-scrollbar
+{
+    width: 10px;
+}
+
+::-webkit-scrollbar-track
+{
+    background: lightgray;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb
+{
+    background: black;
+    border-radius: 5px;
+}
+
+
+.footer{
+    display:block;
+    position:relative;
+    bottom: 0;
+    background-color: white;
+    color:black;
+    width:100%;
+}
+
+.foot-nav{
+    display:flex;
+    column-gap:15px;
+    flex-direction: row;
+    width:100%;
+    padding: 40px 10px;
+}
+
+.foot-section{
+    width:300px;
+}
+
