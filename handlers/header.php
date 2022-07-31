@@ -1,7 +1,7 @@
 <div class="header">
         <div class="left-header">
             <a class="left-head-anchors" href="index.php?root=Home">Home</a>
-            <div name="games">
+            <div name="games" id="games-section">
                 <a class="left-head-anchors" href="index.php?root=Games">Games</a>
                 <div>
                     <div class="dropdown">

@@ -32,27 +32,38 @@
             <form action="stop" method="post" enctype="multipart/form-data" class="login-signup-container"  style="row-gap: 0px;" onsubmit="validate();">
                 <i class="icon">Gamology</i>
                 <div>
-                    <h4 class="form-input-label">Username</h4>
-                    <input id="uname" type="text" name="username" placeholder="Enter Username" title="please type username" pattern="([a-zA-Z0-9]+)" class="form-input-box">
-                    <p></p>
+                    <div>
+                        <h4 class="form-input-label">Username</h4>
+                        <input id="uname" type="text" name="username" placeholder="Enter Username" title="please type username" pattern="([a-zA-Z0-9]+)" class="form-input-box">
+                        <p></p>
+                    </div>
+                    <div>
+
+                    </div>
                 </div>
+
                 <div>
-                    <h4 class="form-input-label">Email</h4>
-                    <input id="mail" type="email" name="email" placeholder="Enter Email" title="please type email" pattern="(.{3,20}[@]{1}.{3,20}[.com]{4})" class="form-input-box">
-                    <p></p>
+                    <div>
+                        <h4 class="form-input-label">Email</h4>
+                        <input id="mail" type="email" name="email" placeholder="Enter Email" title="please type email" pattern="(.{3,20}[@]{1}.{3,20}[.com]{4})" class="form-input-box">
+                        <p></p>
+                    </div>
+                    <div>
+
+                    </div>
                 </div>
                 <div>
                     <div>
                         <h4 class="form-input-label">Profile Picture</h4>
                         <input id="img" type="file" name="profile" class="form-input-box" accept="image/*">
+                        <p id="img-error"></p>
                     </div>
                     <div>
                         <i class="fas fa-tick"></i>
                     </div>
-                    
-                    <p id="img-error"></p>
                 </div>
                 <div>
+
                     <h4 class="form-input-label">New Password</h4>
                     <input id="npass" type="password" placeholder="Enter New Password" title="password must be 8 to 20 characters long" class="form-input-box" pattern="([a-zA-Z0-9]{8,20})">
                     <p></p>
@@ -99,6 +110,20 @@
             
             }
        }
+document.getElementsByClassName('icon')[0].className+=" fade";
+       document.getElementById("games-section").onmouseover=function()
+       {
+        
+        document.getElementsByClassName('icon')[0].style.visibility="hidden";
+       };
+       
+       document.getElementById("games-section").onmouseout=function()
+       {
+        document.getElementsByClassName('icon')[0].style.visibility="visible";
+       };
+       
+       
+       
     </script>
 </body>
 </html>
