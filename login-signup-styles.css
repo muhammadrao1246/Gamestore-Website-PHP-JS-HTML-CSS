@@ -23,6 +23,8 @@ p{
 }
 
 .icon{
+    top: 0;
+    position: sticky;
     transform: scale3d(1.5, 1.5, 1.5);
     text-align: center;
     font: bold 60px calibri;

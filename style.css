@@ -26,6 +26,7 @@ body{
 
 .header{
     position:sticky;
+    top: 0;
     padding:10px 20px;
     display:flex;
     width:100%;

@@ -165,7 +165,7 @@
             for (i; i < 3; i++) 
             {
                 section_number++;
-                if(document.getElementById('item'+(i)) != "null")
+                if(!!document.getElementById('item'+(i)))
                 {
                     document.getElementById('item'+(i)).style.display="grid";
                 }

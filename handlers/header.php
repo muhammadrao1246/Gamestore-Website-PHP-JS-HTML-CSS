@@ -23,8 +23,8 @@
             <a class="left-head-anchors" href="index.php?root=About Us">About Us</a>
         </div>
         <div class="right-header">
-                <a class="right-head-anchor" href="index.php?root=Login">Login</a>
-                <a class="right-head-anchor" href="index.php?root=Sign Up">Sign Up</a>
+                <a class="right-head-anchor" href="login.php?root=Login">Login</a>
+                <a class="right-head-anchor" href="signup.php?root=Sign Up">Sign Up</a>
         </div>
 
 
