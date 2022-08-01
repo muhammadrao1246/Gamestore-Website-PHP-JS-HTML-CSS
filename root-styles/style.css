@@ -70,10 +70,12 @@ a{
     transition: all 0.3s ease-out;
 }
 .right-head-anchor:hover{
-    box-shadow: lightgrey 0px 0px 5px ;
-    border-radius: 5px;
+    box-shadow: 0px 0px 0px 2px black;
+    border-radius: 2px;
+    background-color: white;
+    border: px solid;
+    color: black;
     transition: all 0.2s ease-in;
-    
 }
 div[name="games"]{
     display:flex;

@@ -6,7 +6,13 @@ p{
     background-color: white;
     color: red;
     padding-left: 5px;
-    font-size: 15px;
+    font-size: 14px;
+    display: block;
+}
+
+p::after{
+    content:"\00";
+    color: white;
 }
 
 .post-container{
@@ -31,9 +37,20 @@ p{
     color: #2478f5a8;
 }
 
+.form-input-container{
+    display: flex;
+    column-gap: 5px;
+}
+
 .form-input-label{
     font: 18px calibri;
     margin: 15px 2px;
+}
+
+.modified-form-input-label{
+    margin: 5px 2px;
+    
+    margin-top: 1px;
 }
 
 .form-input-box{
@@ -44,6 +61,25 @@ p{
     border-radius: 5px;
     outline: none;
     color: darkslategray;
+}
+
+.mark-container{
+    margin-top: 38px;
+}
+
+.marker{
+    font-size: 30px;
+    font-weight: bolder;
+    color: white;
+}
+
+.marker-green{
+    color: #00ff00b0;
+}
+
+.marker-red{
+    transform: rotate(45deg);
+    color: orangered;
 }
 
 .submit-button{

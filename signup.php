@@ -12,9 +12,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gamology</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <link rel="stylesheet" type="text/css" href="post-styles.css" />
-    <link rel="stylesheet" type="text/css" href="login-signup-styles.css" />
+    <link rel="stylesheet" type="text/css" href="root-styles/style.css" />
+    <link rel="stylesheet" type="text/css" href="pages/games/post/post-styles.css" />
+    <link rel="stylesheet" type="text/css" href="root-styles/login-signup-styles.css" />
     
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
@@ -29,49 +29,58 @@
     ?>
         <div class="post-container">
             
-            <form action="stop" method="post" enctype="multipart/form-data" class="login-signup-container"  style="row-gap: 0px;" onsubmit="validate();">
+            <form action="signup.php" method="post" enctype="multipart/form-data" class="login-signup-container"  style="row-gap: 0px;" onsubmit="validate();">
                 <i class="icon">Gamology</i>
-                <div>
+                <div class="form-input-container " style="margin-top: 15px;">
                     <div>
-                        <h4 class="form-input-label">Username</h4>
+                        <h4 class="form-input-label modified-form-input-label">Username</h4>
                         <input id="uname" type="text" name="username" placeholder="Enter Username" title="please type username" pattern="([a-zA-Z0-9]+)" class="form-input-box">
-                        <p></p>
+                        <p id="p-uname"></p>
                     </div>
-                    <div>
-
+                    <div class="mark-container">
+                        <i class="fas fa-check marker" id="i-uname"></i>
                     </div>
                 </div>
 
-                <div>
+                <div class="form-input-container ">
                     <div>
-                        <h4 class="form-input-label">Email</h4>
+                        <h4 class="form-input-label modified-form-input-label">Email</h4>
                         <input id="mail" type="email" name="email" placeholder="Enter Email" title="please type email" pattern="(.{3,20}[@]{1}.{3,20}[.com]{4})" class="form-input-box">
-                        <p></p>
+                        <p id="p-mail"></p>
                     </div>
-                    <div>
-
+                    <div class="mark-container">
+                        <i class="fas fa-check marker"  id="i-mail"></i>
                     </div>
                 </div>
-                <div>
+                <div class="form-input-container ">
                     <div>
-                        <h4 class="form-input-label">Profile Picture</h4>
+                        <h4 class="form-input-label modified-form-input-label">Profile Picture</h4>
                         <input id="img" type="file" name="profile" class="form-input-box" accept="image/*">
-                        <p id="img-error"></p>
+                        <p id="p-img"></p>
                     </div>
+                    <div  class="mark-container">
+                        <i class="fas fa-check marker"  id="i-img"></i>
+                    </div>
+                </div>
+                <div  class="form-input-container ">
                     <div>
-                        <i class="fas fa-tick"></i>
+                        <h4 class="form-input-label modified-form-input-label">New Password</h4>
+                        <input id="npass" type="password" placeholder="Enter New Password" title="password must be 8 to 20 characters long" class="form-input-box" pattern="([a-zA-Z0-9]{8,20})">
+                        <p id="p-npass"></p>
+                    </div>
+                    <div class="mark-container">
+                        <i class="fas fa-check marker"  id="i-npass"></i>
                     </div>
                 </div>
-                <div>
-
-                    <h4 class="form-input-label">New Password</h4>
-                    <input id="npass" type="password" placeholder="Enter New Password" title="password must be 8 to 20 characters long" class="form-input-box" pattern="([a-zA-Z0-9]{8,20})">
-                    <p></p>
-                </div>
-                <div>
-                    <h4 class="form-input-label">Confirm Password</h4>
-                    <input id="cpass" type="password" placeholder="Again Enter Password" title="password must be 8 to 20 characters long" class="form-input-box" pattern="([a-zA-Z0-9]{8,20})">
-                    <p></p>
+                <div class="form-input-container ">
+                    <div>
+                        <h4 class="form-input-label modified-form-input-label">Confirm Password</h4>
+                        <input id="cpass" type="password" placeholder="Again Enter Password" title="password must be 8 to 20 characters long" class="form-input-box" pattern="([a-zA-Z0-9]{8,20})">
+                        <p id="p-cpass"></p>
+                    </div>
+                    <div class="mark-container">
+                        <i class="fas fa-check marker"  id="i-cpass"></i>
+                    </div>
                 </div>
                 <div>
                     <input type="submit" value="Sign Up" class="submit-button"  style="margin:10px 0px;">
@@ -85,32 +94,77 @@
 <?php  ?>
 
     <script>
-        var image=document.getElementById('img');
-    
-        image.onchange=function(){
+        //Class Declaration for tick & cross
+        var tick="fas fa-check marker marker-green";
+        var cross="fas fa-plus marker marker-red";
+        
+        //All Input References
+        let input_names=['uname','mail','img','npass','cpass'];
+        
+        window[input_names[0]]=document.getElementById(input_names[0]);
+        window[input_names[1]]=document.getElementById(input_names[1]);
+        window[input_names[2]]=document.getElementById(input_names[2]);
+        window[input_names[3]]=document.getElementById(input_names[3]);
+        window[input_names[4]]=document.getElementById(input_names[4]);
+
+        
+        //Image Validations Size 
+        img.onclick =function()
+        {
+                    document.getElementById('p-'+input_names[2]).innerText="";
+                    document.getElementById('i-'+input_names[2]).className="";
+                    document.getElementById('i-'+input_names[2]).title="";
+                
+        }
+
+        img.onchange=function()
+        {
             
                 if(((image.files[0].size)/1024) < 165)
                 {
-                    document.getElementById('img-error').innerText="";
+                    document.getElementById('p-'+input_names[2]).innerText="";
+                    document.getElementById('i-'+input_names[2
+                ]).className=tick;
+                    document.getElementById('i-'+input_names[2]).title="Image Selected";
                 }
                 else
                 {
-                    document.getElementById('img-error').innerText="*Image size must be less than 2MB(2048KB)";
+                    document.getElementById('p-'+input_names[2]).innerText="*Image size must be less than 2MB(2048KB)";
+                    document.getElementById('i-'+input_names[2]).className=cross;
+                    document.getElementById('i-'+input_names[2]).title="Image Not Selected";
                 }
         }
+        
+        //Password Validation
+        npass.onkeyup=function(){
+                
+        }
+        
        function validate() 
        {
-            var uname=document.getElementById('uname').value;
-            var username_pattern="";
 
-
+            // username must have atleast 1 numbers and 4 letters 
+            var username_regex1=/.{0,}[a-zA-Z]{1,}.{0,}[a-zA-Z]{1,}.{0,}[a-zA-Z]{1,}.{0,}[a-zA-Z]{1,}.{0,}/g;
+            var username_regex2=/[0-9]{1,}/;
+            
+            // /((^[a-zA-Z]{0,}[0-9]{1,}[a-zA-Z0-9]{0,}@gmail.com))/g.exec('muhammadrao1246@gmail.com')
+            //|(^.{0,}[a-zA-Z]{3,}.{0,}@gmail.com$)
+            var email_regex1=/((^[a-zA-Z0-9]{0,}[0-9]{1,}[a-zA-Z0-9]{0,}@gmail.com$))/g; //for to have atleast 1 number
+            var email_regex2=/(^.{0,}[a-zA-Z]{1,}.{0,}[a-zA-Z]{1,}.{0,}[a-zA-Z]{1,}.{0,}@gmail.com$)/g;  //for to have atleast 3 characters
 
             if(image.files[0].size > 0)
             {
             
             }
        }
-document.getElementsByClassName('icon')[0].className+=" fade";
+       //window.onload.validate();
+
+
+
+
+
+
+       //Event Listeners For Page Icon
        document.getElementById("games-section").onmouseover=function()
        {
         
