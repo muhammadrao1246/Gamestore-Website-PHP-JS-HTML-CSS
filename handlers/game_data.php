@@ -1,8 +1,8 @@
 <?php
-    include "handlers/current_state.php";
+    include "current_state.php";
     $prev_nav;
 
-$nav="<a class='navigation-path' href='index.php?root=Games'> Games </a>";
+$nav="<a class='navigation-path' href='/practice/index.php?root=Games'> Games </a>";
 $query="select* from dates order by seconds,minutes,hours,days,months,years;";
 $prev_nav=$nav;
 //initially
@@ -10,7 +10,7 @@ $prev_nav=$nav;
 if(isset($_GET['root']))
 {
     $root=$_GET['root'];
-    $nav="<a class='navigation-path' href='index.php?root=$root'> $root </a>";
+    $nav="<a class='navigation-path' href='/practice/index.php?root=$root'> $root </a>";
 }
 
 
@@ -18,7 +18,7 @@ if(isset($_GET['root']))
 if (isset($_GET['category'])) 
 {
     $cat=$_GET['category'];
-    $nav .= ' > '."<a class='navigation-path' href='index.php?category=$cat'> $cat </a>";
+    $nav .= ' > '."<a class='navigation-path' href='/practice/index.php?category=$cat'> $cat </a>";
     $query='select* from dates where Genre="'.$_GET['category'].'" order by seconds,minutes,hours,days,months,years ;';    
 }
 
@@ -29,7 +29,7 @@ if(isset($_GET['id']))
     $fetch=mysqli_fetch_assoc($runner);
     
     $cat=$fetch['Genre'];
-    $nav .= ' > '."<a class='navigation-path' href='index.php?category=$cat'> $cat </a>";
+    $nav .= ' > '."<a class='navigation-path' href='/practice/index.php?category=$cat'> $cat </a>";
 
     //noow the full categories data
     $query='select * from dates where genre="'.$fetch['Genre'].'" and Id != "'.$_GET['id'].'" order by seconds,minutes,hours,days,months,years;';

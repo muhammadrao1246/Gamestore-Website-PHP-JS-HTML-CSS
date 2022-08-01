@@ -1,7 +1,7 @@
 <?php
-    include "handlers/connect.php";
-    include "handlers/game_data.php";
-    include "handlers/date_approx.php";
+    include "/xampp/htdocs/practice/handlers/connect.php";
+    include "/xampp/htdocs/practice/handlers/game_data.php";
+    include "/xampp/htdocs/practice/handlers/date_approx.php";
 
     function string_handler($str)
     {
@@ -28,18 +28,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gamology</title>
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="/practice/style.css" />
     <link rel="stylesheet" type="text/css" href="post-styles.css" />
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <?php
-        include "handlers/header.php";
+        include "/xampp/htdocs/practice/handlers/header.php";
     ?>
 
     <div class="section">
     <?php
-        include "handlers/breadcrumb.php";
+        include "/xampp/htdocs/practice/handlers/breadcrumb.php";
     ?>
         <div class="post-container">
                 

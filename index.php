@@ -41,7 +41,7 @@
                     <div class="product-detail">
                             
                                 <h2>
-                                    <a class="navigation-path" href="post.php?id=<?php echo $row[$i]['Id']; ?>&nav=<?php echo $nav; ?>">
+                                    <a class="navigation-path" href="pages/games/post/post.php?id=<?php echo $row[$i]['Id']; ?>&nav=<?php echo $nav; ?>">
                                         <?php echo $row[$i]['Game']; ?>
                                     </a>
                                     </h2>

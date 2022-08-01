@@ -16,7 +16,7 @@ body{
     scroll-behavior: smooth;
     overflow-x: hidden;
     margin:0;
-    background-image:url("/practice/john wick.jpg") ;
+    background-image:url("/practice/images/john wick.jpg") ;
     background-position: center;
     background-repeat: unset;
     background-attachment: fixed;
