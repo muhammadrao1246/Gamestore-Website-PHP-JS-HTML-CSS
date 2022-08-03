@@ -110,18 +110,20 @@ include "handlers/date_approx.php";
         window[input_names[4]] = document.getElementById(input_names[4]);
 var hold;
 
-        //Image Validations 
+        //Image Validations Robust Algorithm
         var image_flag=0;
         var image_count=0;
         img.onchange = function()
         {
             var arr=img.files;
             hold=arr;
+            image_flag=0;
             for (const key in arr) 
             {
                 myfunction(key,arr);
-                if (image_flag==-1) 
+                if (image_flag==0) 
                 {
+                    document.getElementById('p-' + input_names[2]).innerText = "*Profile picture is required";
                     document.getElementById('i-' + input_names[2]).className = cross;
                     document.getElementById('i-' + input_names[2]).title = "Image Not Selected";
                     break;
@@ -138,7 +140,7 @@ var hold;
                 {
                     if(img_type.test(image[index].type))
                     {
-                        if (((image[index].size) / 1024) < 165) 
+                        if (((image[index].size) / 1024) < 2048) 
                         {
                             image_flag=1;
                             document.getElementById('p-' + input_names[2]).innerText = "";
@@ -147,7 +149,7 @@ var hold;
                         } 
                         else 
                         {
-                            image_flag=-1;
+                            image_flag=0;
                             document.getElementById('p-' + input_names[2]).innerText = "*Image size must be less than 2MB(2048KB)";
                             document.getElementById('i-' + input_names[2]).className = cross;
                             document.getElementById('i-' + input_names[2]).title = "Image Not Selected";
@@ -155,7 +157,7 @@ var hold;
                     }
                     else
                     {
-                        image_flag=-1;
+                        image_flag=0;
                         document.getElementById('p-' + input_names[2]).innerText = "*Selected file must type of .png .jpg .jpeg .ico";
                         document.getElementById('i-' + input_names[2]).className = cross;
                         document.getElementById('i-' + input_names[2]).title = "Image Not Selected";
@@ -176,10 +178,43 @@ var hold;
                 document.getElementById('i-' + input_names[2]).title = "";   
             }
         }
-
+        
         //Password Validation
-        npass.onkeyup = function() {
-
+        var password_flag=0;
+        npass.addEventListener("change",password_validate);
+        npass.addEventListener("blur",password_validate);
+        
+        function password_validate() 
+        {
+            var password_regex1=/[a-zA-Z]{1,}/;//must include one letter
+            var password_regex2=/[0-9]{1,}/;
+            var password_regex3=/[~!@#$%^&*()_{}`"|'/.<>,\?\]\[+=]{1,}/;
+            
+            if (npass.value) 
+            {
+                if(password_regex1.test(npass.value) && password_regex2.test(npass.value) && password_regex3.test(npass.value))
+                {
+                    // if (password_strength()) 
+                    // {
+                        password_flag=1;
+                        document.getElementById('p-' + input_names[3]).innerText = "";
+                        document.getElementById('i-' + input_names[3]).className = tick;
+                        document.getElementById('i-' + input_names[3]).title= "Password Accepted!";   
+                    // }
+                }
+                else
+                {
+                    document.getElementById('p-' + input_names[3]).innerText = "*Password must have letters, numbers & symbols";
+                    document.getElementById('i-' + input_names[3]).className = cross;
+                    document.getElementById('i-' + input_names[3]).title = "Password Not Accepted";
+                }
+            }
+            else
+            {
+                document.getElementById('p-' + input_names[3]).innerText = "*Password required";
+                document.getElementById('i-' + input_names[3]).className = cross;
+                document.getElementById('i-' + input_names[3]).title = "Password Not Accepted";
+            }
         }
 
         function validate() {
