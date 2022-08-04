@@ -108,24 +108,19 @@ include "handlers/date_approx.php";
         window[input_names[2]] = document.getElementById(input_names[2]);
         window[input_names[3]] = document.getElementById(input_names[3]);
         window[input_names[4]] = document.getElementById(input_names[4]);
-var hold;
-
+        
         //Image Validations Robust Algorithm
         var image_flag=0;
         var image_count=0;
         img.onchange = function()
         {
             var arr=img.files;
-            hold=arr;
             image_flag=0;
             for (const key in arr) 
             {
                 myfunction(key,arr);
-                if (image_flag==0) 
+                if (image_flag==-1) 
                 {
-                    document.getElementById('p-' + input_names[2]).innerText = "*Profile picture is required";
-                    document.getElementById('i-' + input_names[2]).className = cross;
-                    document.getElementById('i-' + input_names[2]).title = "Image Not Selected";
                     break;
                 }
             }
@@ -149,7 +144,7 @@ var hold;
                         } 
                         else 
                         {
-                            image_flag=0;
+                            image_flag=-1;
                             document.getElementById('p-' + input_names[2]).innerText = "*Image size must be less than 2MB(2048KB)";
                             document.getElementById('i-' + input_names[2]).className = cross;
                             document.getElementById('i-' + input_names[2]).title = "Image Not Selected";
@@ -157,7 +152,7 @@ var hold;
                     }
                     else
                     {
-                        image_flag=0;
+                        image_flag=-1;
                         document.getElementById('p-' + input_names[2]).innerText = "*Selected file must type of .png .jpg .jpeg .ico";
                         document.getElementById('i-' + input_names[2]).className = cross;
                         document.getElementById('i-' + input_names[2]).title = "Image Not Selected";
@@ -172,10 +167,11 @@ var hold;
             }
             if (image.length==0) 
             {
-                image_flag=image_count=0;
-                document.getElementById('p-' + input_names[2]).innerText = "";
-                document.getElementById('i-' + input_names[2]).className = "";
-                document.getElementById('i-' + input_names[2]).title = "";   
+                image_count=0;
+                image_flag=-1;
+                document.getElementById('p-' + input_names[2]).innerText = "*Profile picture is required";
+                document.getElementById('i-' + input_names[2]).className = cross;
+                document.getElementById('i-' + input_names[2]).title = "Image Not Selected";  
             }
         }
         

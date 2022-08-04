@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+div {
+  width: 100px;
+  height: 100px;
+  
+}
+
+hr{
+height:10px;
+border-radius:50px;
+background-color:lightgrey;
+z-index:-1;
+}
+
+.bar{
+margin-top:-20px;
+height:10px;
+float:left;
+width:50%;
+background-color:orange;
+border-radius:50px;
+animation-name:example;
+animation-duration:2s;
+
+}
+
+
+
+@keyframes example {
+  from {width: 0%;}
+  to {width: 50%;
+  animation-play-state:paused;}
+}
+</style>
+</head>
+<body>
+
+<h1>CSS Animation</h1>
+<hr>
+<hr class="bar">
+<div></div>
+
+<p><b>Note:</b> When an animation is finished, it goes back to its original style.</p>
+
+</body>
+</html>
+
+

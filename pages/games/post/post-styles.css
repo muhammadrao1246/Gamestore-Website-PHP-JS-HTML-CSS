@@ -1,3 +1,35 @@
+@media screen and (max-width:600px)
+{
+    .nav-panel{
+        padding:0px !important;
+    }
+    .section{
+        width: 80% !important;
+        row-gap: 15px ;
+    }   
+    .post-container{
+        border: 1px solid black;
+        border-radius: 3px;
+        padding: 0px !important;
+    }
+    .post{
+        display: flex !important;
+        flex-direction: column !important;
+        border: none !important;
+        padding: 0px !important;
+    }
+    h1{
+        font-size: 40px !important;
+    }
+    .description{
+        text-align: justify;
+    }
+    .buy-and-learn{
+        flex-direction: column;
+        row-gap: inherit;
+    }
+}
+
 body{
     font-family: calibri;
 }
@@ -167,7 +199,4 @@ p{
     margin-right: -49%;
     margin-top: 100px;
     border-radius: 5px 0px 0px 5px;
-}
-@media only screen and (max-width: 480px)  {
-    
 }

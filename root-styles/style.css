@@ -10,6 +10,27 @@
         flex-direction: column;
         row-gap: 10px;
     }
+    .section{
+        width: 85% !important;
+    }
+    img{
+        display: block !important;
+        height: max-content !important;
+    }
+    .item{
+        flex-direction: column;
+    }
+    .product-detail{
+        display: flex !important;
+        flex-direction: column;
+        margin:15px 0px !important;
+    }
+    #desc > code{
+        font-size: 13px !important;
+    }
+    code{
+        line-height: 1.5;
+    }
 }
 
 body{
@@ -29,7 +50,6 @@ body{
     top: 0;
     padding:10px 20px;
     display:flex;
-    width:100%;
     background-color: white;
 }
 .left-header{
@@ -111,11 +131,13 @@ div[name="games"]:hover .dropdown{
     margin:10px auto;
     width:90%;
     padding: 20px;
-    display: grid;
+    display: flex;
+    flex-direction: column;
     background-color: white;
 }
 img{
     width: 250px;
+    align-self: center;
     height: 190px;
 }
 
@@ -143,7 +165,8 @@ img{
 
 .gallery{
     padding: 10px;
-    display: grid;
+    display: flex;
+    flex-direction: column;
     row-gap: 30px;
 }
 .item{
@@ -181,16 +204,18 @@ p{
 code{
     font-size: 14px;
     padding:0px 5px;
+    line-break: auto;
 }
 #desc{
     overflow: hidden;
-    max-height: 71px;
+    height: fit-content;
 }
 #desc > code{
     letter-spacing: 0.1px;
     word-spacing: -2.8px;
     line-height: 2;
     font-size: 12px;
+    text-align: justify;
     font-weight: 200;
 }
 
