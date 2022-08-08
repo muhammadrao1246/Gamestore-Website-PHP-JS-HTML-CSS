@@ -1,3 +1,27 @@
+@media screen and (max-width:600px) 
+{
+    .section {
+        width: 85% !important;
+    }
+    
+    .post-container {
+        border: none !important;
+        border-radius: none !important;
+    }
+
+    .icon {
+        font-size: 40px !important;
+        margin: auto !important;
+        width: min-content !important;
+        top: unset !important;
+        position: unset !important;
+    }
+    .login-signup-container{
+        padding: 0% !important;
+    }
+}
+
+
 .section{
     width: 40%;
 }
@@ -84,13 +108,14 @@ p::after{
 
 .submit-button{
     cursor: pointer;
-    padding: 5px 15px;
+    padding: 8px 15px;
     font: 22px calibri;
     letter-spacing: 0px;
     background-color: black;
     color: white;
     float: right;
     border-radius: 3px;
+    border: none;
 }
 
 .create-anchor{

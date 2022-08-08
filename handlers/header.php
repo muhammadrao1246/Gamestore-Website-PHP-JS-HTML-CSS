@@ -23,8 +23,8 @@
             <a class="left-head-anchors" href="/practice/index.php?root=About Us">About Us</a>
         </div>
         <div class="right-header">
-                <a class="right-head-anchor" href="/practice/login.php?root=Login">Login</a>
-                <a class="right-head-anchor" href="/practice/signup.php?root=Sign Up">Sign Up</a>
+                <p id="user">muhammadrao1246</p>
+                <img src="/practice/images/john wick.jpg" alt="Not Found" class="profile-picture">
         </div>
 
 

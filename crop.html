@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<style>
+    .cropper{
+        display: flex;
+    }
+    .cropped{
+        display: flex;
+        width: 105px;
+        overflow: hidden;
+        height: 105px;
+    }
+    .cropping-container{
+        display: flex;
+    }
+    .cropper > img{
+        width: 350px;
+        height: max-content;
+        background-image: url(images/opaque.png);
+    }
+    .cropped-image{
+        background-image: url('images/opaque.png');
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border: 5px solid;
+    }
+    .resizable{
+        background-color: transparent;
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        border: 5px solid black;
+    }
+    .movement-handlers{
+        display: flex;
+        column-gap: 5px;
+        width: min-content;
+        align-items: center;
+    }
+    .up-down{
+        display: grid;
+        width: min-content;
+        row-gap: 10px;
+    }
+    .down{
+        transform: rotate(90deg);
+    }
+    .up{
+        transform: rotate(-90deg);
+    }
+    .processed
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 20px;
+        padding: 20px;
+        background-image:linear-gradient(black,white,gray);
+    }
+    button{
+        background-color: black;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        font: 30px calibri;
+    }
+    button:focus{
+        background-color: white;
+        color: black;
+    }
+</style>
+</head>
+<body style="margin: 0;">
+
+
+
+
+
+<div class="cropping-container" >
+    <div class="cropper">
+        <img src="images/john wick.jpg" alt="" class="target" >
+        <div class="resizable"></div>
+    </div>
+    <div class="processed">
+        <input type="file" id="upload">
+        <h4>Cropped Image !</h4>
+        <div class="cropper" style="width: 110px;overflow: hidden;height: 110px;">
+            <img src="" id="cropped_picture_container" alt="" class="target">
+            <div class="cropped-image " id="capture"></div>
+        </div>
+        <div class="movement-handlers">
+            <button class="left">❮</button>
+            <div class="up-down">
+                <button class="up" >❯</button>
+                <button class="down" >❯</button>   
+            </div>
+            <button class="right">❯</button>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+    //initializing both picture containers 
+    var target_image=document.getElementsByClassName('target')[0];
+
+    var moving_div= document.getElementsByClassName('resizable')[0];
+    var current_left=current_top=div_top=div_left=0;
+
+    var cropped_div=document.getElementsByClassName('cropped-image')[0];
+
+    var dummy_image=document.getElementsByClassName('target')[1];
+
+
+
+    //image which is uploaded
+    var uploaded_image=document.getElementById('upload');
+    
+    var actual_width=actual_height=0;
+
+    //showing uploadded picture in targeted div
+    uploaded_image.onchange = function() {
+
+            target_image.src = URL.createObjectURL(uploaded_image.files[0]);
+
+            document.getElementById('cropped_picture_container').src=target_image.src;//showing in dummy image
+
+            //remove background of cropped-image container
+            cropped_div.style.backgroundImage="unset";
+            cropped_div.style.backgroundColor="transparent";
+
+            //getting width and height
+            setTimeout(() => {
+                uploaded_picture_dimensions();
+            }, 2000);
+
+            //reset divs
+            moving_div.style.top=0+'px';
+            moving_div.style.left=0+'px';
+        }
+
+    //saving current picture dimensions
+    function uploaded_picture_dimensions() 
+    {
+        actual_width = Number(Math.ceil((target_image.getBoundingClientRect().width)))-110;
+        actual_height = Number(Math.ceil((target_image.getBoundingClientRect().height)))-110;
+    }
+
+
+
+//cropped_div.style.backgroundImage='url("'+URL.createObjectURL(uploaded_image.files[0])+'")';
+//cropped_div.style.backgroundSize=''+target_image.getBoundingClientRect().width+'px '+target_image.getBoundingClientRect().height+'px';
+//cropped_div.style.backgroundPosition=''+document.getElementsByClassName('resizable')[0].getBoundingClientRect().x +'px '+ document.getElementsByClassName('resizable')[0].getBoundingClientRect().y+'px'
+        
+        //movement handlers
+        var left=document.getElementsByClassName('left')[0];
+
+        var right=document.getElementsByClassName('right')[0];
+
+        var up=document.getElementsByClassName('up')[0];
+
+        var down=document.getElementsByClassName('down')[0];
+
+    //movement listeners  and calculators  
+
+    // //onclick move one pixel
+    // left.addEventListener('click',()=>{
+    //     move_left(Number(1));
+    // });
+
+    // right.addEventListener('click',()=>{
+    //     move_right(Number(1));
+    // });
+
+    // up.addEventListener('click',()=>{
+    //     move_up(Number(1));
+    // });
+
+    // down.addEventListener('click',()=>{
+    //     move_down(Number(1));
+    // });
+
+    //onhold move as many pixel
+    var flag=1;
+    document.addEventListener('keydown',(e)=>{
+        console.log(e.key);
+        if(e.key == 'ArrowUp') move_up(Number(1));
+        if(e.key == 'ArrowDown') move_down(Number(1));
+        if(e.key == 'ArrowLeft') move_left(Number(1));
+        if(e.key == 'ArrowRight') move_right(Number(1));
+    });
+
+    //movement functionality
+
+    function get_current_position() 
+    {
+        current_top=  Number(Math.ceil(moving_div.getBoundingClientRect().top));
+        current_left= Number(Math.ceil(moving_div.getBoundingClientRect().left)); 
+    }
+
+    function move_left(inc)
+    {
+        get_current_position();
+        if( current_left > 0 )
+        {
+            div_left = current_left - 1;
+        }
+        Set_Position_of_moveable_div_and_cropped_container(); 
+    }
+    function move_right(inc)
+    {
+        get_current_position();
+        if( current_left < actual_width )
+        {
+            div_left = current_left + 1;
+        }
+        Set_Position_of_moveable_div_and_cropped_container(); 
+    }
+    function move_up(inc)
+    {
+        get_current_position();
+        if( current_top > 0 )
+        {
+            div_top = current_top - 1;
+        }      
+        Set_Position_of_moveable_div_and_cropped_container(); 
+    }
+    function move_down(inc)
+    {
+        get_current_position();
+        if( current_top < actual_height )
+        {
+            div_top = current_top + 1;
+        }
+        Set_Position_of_moveable_div_and_cropped_container();        
+    }
+
+    function Set_Position_of_moveable_div_and_cropped_container() 
+    {
+        moving_div.style.top=div_top+'px';
+        moving_div.style.left=div_left+'px';
+
+        //crooped sector visible
+        dummy_image.style.objectPosition="-"+div_left+"px -"+div_top+"px";
+    }
+
+</script>
+
+</body>
+</html>

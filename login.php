@@ -42,7 +42,7 @@
                     <input type="submit" value="Login" class="submit-button">
                 </div>
                 <div>
-                    Don't Have Account? <a href="" class="create-anchor">Create Account</a>
+                    Don't Have Account? <a href="/practice/signup.php?root=Sign Up" class="create-anchor">Create Account</a>
                 </div>
             </form>   
 

@@ -13,7 +13,7 @@
     .section{
         width: 85% !important;
     }
-    img{
+    .item > img{
         display: block !important;
         height: max-content !important;
     }
@@ -97,6 +97,15 @@ a{
     color: black;
     transition: all 0.2s ease-in;
 }
+.profile-picture{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+}
+
+
+
+
 div[name="games"]{
     display:flex;
     column-gap: 2px;
@@ -135,7 +144,7 @@ div[name="games"]:hover .dropdown{
     flex-direction: column;
     background-color: white;
 }
-img{
+.item > img{
     width: 250px;
     align-self: center;
     height: 190px;
@@ -193,7 +202,7 @@ label{
     border-radius: 5px 0px 0px 5px;
     padding:5px 4px;
 }
-p{
+.product-detail > p{
     margin:8px 0px;
     padding:4px;
     padding-left: 0px;

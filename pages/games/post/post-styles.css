@@ -28,6 +28,10 @@
         flex-direction: column;
         row-gap: inherit;
     }
+    .slider-image{
+        width: 190px !important;
+        height: 180px !important;
+    }
 }
 
 body{
