@@ -1,0 +1,144 @@
+.cropper{
+    display: flex;
+    width: 350px;
+    align-items: center;
+    background-image: url('images/opaque.png');
+}
+.loader-1{
+    display: flex;
+    backdrop-filter: blur(5px);
+    z-index: 1;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    align-items: center;
+    width: 350px;
+    align-self: center;
+    height: -webkit-fill-available;
+    position: absolute;
+    font: normal 70px calibri;
+}
+.loader-1 > span:nth-child(1){
+    font:bold 30px calibri;
+}
+.loader-2{
+    width: 162px;
+    height: 162px;
+}
+.loader-2 > span:nth-child(1){
+    font:bold 20px calibri;    
+}
+.loader-2 > span:nth-child(2){
+    font:bold 40px calibri;
+}
+.rotate-animation{
+    animation-name: rotate_infinite;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes rotate_infinite {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(-360deg);
+    }
+}
+
+.cropped{
+    display: flex;
+    width: 160px;
+    overflow: hidden;
+    height: 160px;
+}
+.cropping-container{
+    display: flex;
+}
+.cropper > img{
+    width: 350px;
+    display: none;
+    height: max-content;
+    background-image: url(images/opaque.png);
+}
+.cropped-image{
+    background-image: url('images/opaque.png');
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    border: 1px solid;
+}
+.resizable{
+    background-color: transparent;
+    position: absolute;
+    width: 160px;
+    box-shadow: 0px 0px 124px 0px;
+    height: 160px;
+    border: 1px solid black;
+}
+.movement-handlers{
+    display: flex;
+    column-gap: 5px;
+    width: min-content;
+    align-items: center;
+}
+.up-down{
+    display: flex;
+    flex-direction: column;
+    width: min-content;
+    row-gap: 20px;
+}
+.down{
+    transform: rotate(90deg);
+}
+.up{
+    transform: rotate(-90deg);
+}
+.processed
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
+    padding: 20px;
+    background-image:linear-gradient(black,white,gray);
+}
+.processed > h4{
+    font: normal 20px calibri;
+    padding: 2px 20px;
+    border-radius: 3px;
+    background-image: linear-gradient(45deg, white 30%, silver);
+}
+input[type='file']{
+    padding: 5px;
+    background-image: linear-gradient(45deg,white,darkgray);
+}
+button{
+    background-color: black;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    font: 30px calibri;
+}
+button:focus{
+    background-color: white;
+    color: black;
+}
+
+.border-animation
+{
+    animation-name: left_to_down;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes left_to_down {
+    
+    from{
+        border-color: black;
+    }
+    to{
+        border-color: white;
+    }
+}
+
