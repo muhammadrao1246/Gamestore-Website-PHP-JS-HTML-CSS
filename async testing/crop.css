@@ -119,10 +119,13 @@ button{
     padding: 10px 15px;
     border: none;
     font: 30px calibri;
+    transition: 0.3s all;
 }
-button:focus{
+button_on{
     background-color: white;
     color: black;
+    transition: 0.5s all;
+    padding: 8px 13px;
 }
 
 .border-animation

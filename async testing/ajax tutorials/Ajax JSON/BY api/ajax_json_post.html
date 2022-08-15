@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Implementation with JSON</title>
+</head>
+<body>
+    
+    <div>
+        <h2>Ajax With JSON POST METHOD</h2>
+        <div id="content">
+
+        </div>
+        <button onclick="response();"> CLick Me </button>
+    </div>
+
+<script>
+    var btn = document.getElementsByTagName('button');
+
+    var request_json = new XMLHttpRequest();
+
+    function response() 
+    {
+        
+        request_json.onreadystatechange = function do_json() {
+          if (this.readyState == 4 && this.status == 201) 
+          {
+            document.getElementById('content').innerHTML = this.responseText; //this.responseText //currently in string
+                        
+            var info = JSON.parse(this.responseText);
+          }
+            console.log(info);
+        };
+
+        var data = {body:{
+                    id: 1,
+                    title: 'FIrst Post',
+                    body: 'HEllo',
+                    userId: 507
+                    }};
+        request_json.open('POST','https://jsonplaceholder.typicode.com/posts',true); //using fake json playing api for data operations
+        request_json.getResponseHeader('Content-type','application/json');
+        request_json.send(JSON.stringify(data));
+
+    }
+
+</script>
+</body>
+</html>

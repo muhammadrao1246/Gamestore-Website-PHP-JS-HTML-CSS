@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Implementation with JSON</title>
+</head>
+<body>
+    
+    <div>
+        <h2>Ajax With JSON GET METHOD</h2>
+        <div id="content">
+
+        </div>
+        <button onclick="response();"> CLick Me </button>
+    </div>
+
+<script>
+    var btn = document.getElementsByTagName('button');
+
+    var request_json = new XMLHttpRequest();
+
+    function response() 
+    {
+        
+        request_json.onreadystatechange = function do_json() {
+          if (this.readyState == 4 && this.status == 200) 
+          {
+            document.getElementById('content').innerHTML = "<b>Products:</b><br>{ "; //this.responseText //currently in string
+                        
+            var info = JSON.parse(this.responseText);
+                
+                for (let prod in info[key="products"]) 
+                {
+
+                    document.getElementById('content').innerHTML += "<br><b>" + prod + "</b>:<br><br> ";
+                    document.getElementById('content').innerHTML += "{ <br>";
+                    for (const product in info[key][prod]) 
+                    {
+                        
+                        document.getElementById('content').innerHTML += "<b>" + product + "</b>: " + JSON.stringify(info[key][prod][product]) + ",<br>";
+                        
+                    }
+                    document.getElementById('content').innerHTML += "<br>},";
+                }
+
+            document.getElementById('content').innerHTML += "<br>}<br>";
+
+          }
+console.log(info);
+        };
+
+        var data = {id:1000};
+        request_json.open('GET','https://dummyjson.com/products/',true); //using fake json playing api for data operations
+        request_json.getResponseHeader('Content-type','application/json');
+        request_json.send();
+        
+    }
+
+</script>
+</body>
+</html>

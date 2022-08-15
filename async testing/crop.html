@@ -51,12 +51,26 @@
     </div>
 </div>
 
+<div class="clone-storage" style="display: none;">
+
+</div>
+
+<div class="clone-source" style="display: none;">
+
+</div>
 
 
 <script>
 
     //initializing both picture containers 
+    var crop_tool_window=document.getElementsByClassName('cropping-container')[0];
+
     var target_image=document.getElementsByClassName('target')[0];
+
+    const loader=document.getElementsByClassName('loader-1');
+    var loader_flag=0;
+    loader[0].style.display="none";
+    loader[1].style.display="none";
 
     var moving_div= document.getElementsByClassName('resizable')[0];
     moving_div.style.display="none";
@@ -74,7 +88,11 @@
     var actual_width=actual_height=0;
 
     //showing uploadded picture in targeted div
-    uploaded_image.onchange = function() {
+    uploaded_image.onchange = function() 
+    {
+            loader_flag = 1;
+            loader[0].style.display="flex";
+            loader[1].style.display="flex";
 
             display_images();
             moving_div.style.display="none";
@@ -83,14 +101,19 @@
             //getting width and height
             setTimeout(() => {
                 uploaded_picture_dimensions();
-            }, 2000);
+            }, 1500);
 
 
             setTimeout(() => {
                 //reset moving divs
                 set_moving_div_initially();
-            }, 3000);
+            }, 2000);
 
+            setTimeout(() => {
+                loader[0].style.display="none";
+                loader[1].style.display="none";
+                loader_flag = 0;
+            }, 4000);
             
         }
 
@@ -164,15 +187,47 @@
 
     //movement listeners  and calculators  
 
-    //onhold move as many pixel
+    function remove_effect(btn) 
+    {
+        
+            left.className.replace(btn,"");
+            right.className.replace(btn,"");
+            up.className.replace(btn,""); 
+            down.className.replace(btn,"");
+       
+    }
 
-    document.addEventListener('keydown',(e)=>{
+    //onhold move as many pixel
+    
+    crop_tool_window.onkeydown = (e)=> {run_at_event(e);};
+    function run_at_event(e)
+    {
         console.log(e.key);
-        if(e.key == 'ArrowUp') move_up(Number(1));
-        if(e.key == 'ArrowDown') move_down(Number(1));
-        if(e.key == 'ArrowLeft') move_left(Number(1));
-        if(e.key == 'ArrowRight') move_right(Number(1));
-    });
+        if ( loader_flag != 1) 
+        {
+            if(e.key == 'ArrowUp') {
+            move_up(Number(1));
+            remove_effect(/( button_on)/);
+            up.className+=" button_on";
+            }
+            if(e.key == 'ArrowDown') {
+                move_down(Number(1));
+                remove_effect(/( button_on)/);
+                down.className+=" button_on";
+            }
+            if(e.key == 'ArrowLeft') {
+                move_left(Number(1));
+                remove_effect(/( button_on)/);
+                left.className+=" button_on";
+            }
+            if(e.key == 'ArrowRight') {
+                move_right(Number(1));
+                remove_effect(/( button_on)/);
+                right.className+=" button_on";
+            }
+        }
+        
+    }
 
     //movement functionality
 

@@ -1,0 +1,59 @@
+<students>
+    <student>
+        <rollno>
+            20-ARID-507
+        </rollno>
+        <name>
+            Muhammad Bin Zulfiqar
+        </name>
+        <address>
+            H#4/3 A, G-7/2, Islamabad
+        </address>
+        <contact>
+            <landline>
+                051-2606210
+            </landline>
+            <mobile>
+                0311-5142934
+            </mobile>
+        </contact>
+    </student>
+    <student>
+        <rollno>
+            20-ARID-511
+        </rollno>
+        <name>
+            Muhammad
+        </name>
+        <address>
+            H#4/1 A, G-7/5, Islamabad
+        </address>
+        <contact>
+            <landline>
+                051-26032210
+            </landline>
+            <mobile>
+                0311-514532934
+            </mobile>
+        </contact>
+    </student>
+    <student>
+        <rollno>
+            20-ARID-517
+        </rollno>
+        <name>
+            Zulfiqar
+        </name>
+        <address>
+            H#4/6 A, G-7/3, Islamabad
+        </address>
+        <contact>
+            <landline>
+                051-26043210
+            </landline>
+            <mobile>
+                0313-54242934
+            </mobile>
+        </contact>
+    </student>
+</students>

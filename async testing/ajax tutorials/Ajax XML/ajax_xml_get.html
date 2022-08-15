@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Implementation with XML</title>
+</head>
+<body>
+    
+    <div>
+        <h2>Ajax With XML GET METHOD</h2>
+        <div id="content">
+
+        </div>
+        <button onclick="response()"> CLick Me </button>
+    </div>
+
+<script>
+    var btn = document.getElementsByTagName('button');
+
+    var request_xml = new XMLHttpRequest();
+
+    function response() 
+    {
+        
+        request_xml.onreadystatechange = function do_json() {
+          if (this.readyState == 4 && this.status == 200) 
+          {
+            return_sanitized_xml(request_xml);
+          }
+        };
+
+        request_xml.open('GET','data.xml',true); 
+        request_xml.send();
+    }
+
+    function return_sanitized_xml(req) 
+    {
+        var xmldoc= new DOMParser();
+
+        xmldoc = req.responseXML;
+        console.log(xmldoc);
+        
+        var dom = "<h5>Students Record</h5><table border=1 cellpadding=10 cellspacing=0>"; 
+
+        dom += "<tr>";
+                var single = xmldoc.getElementsByTagName('student')[0].children;
+                for (const key in single) {
+                    if (!isNaN(Number(key))) 
+                    {
+                        dom += "<th>" +  single[key].tagName.toUpperCase() + "</th>";
+                    }
+                } 
+        dom += "</tr>";
+            
+        for (const index in xmldoc.getElementsByTagName('student'))
+        {
+            if (!isNaN(Number(index)))
+            {
+            dom += "<tr>";
+                for (const key in xmldoc.getElementsByTagName('student')[index].children) 
+                {
+                    if (!isNaN(Number(key))) 
+                    {
+                        dom += "<td>" + xmldoc.getElementsByTagName('student')[index].children[key].innerHTML + "</td>";
+                    }
+                } 
+            dom += "</tr>";
+            }
+        }
+
+        dom += "</table>";
+        
+        document.getElementById('content').innerHTML = dom;
+    }
+
+
+</script>
+</body>
+</html>
