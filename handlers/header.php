@@ -1,5 +1,5 @@
 <?php
-    
+    require_once "make_caller.php";
     function image_width_calculator($width_of_container)
     {
         return $pic_width = ( ($width_of_container * 100) / ( 46.2857143 ) );
@@ -17,7 +17,7 @@
         <div class="left-header">
             <a class="left-head-anchors" href="/practice/index.php?root=Home">Home</a>
             <div name="games" id="games-section">
-                <a class="left-head-anchors" href="/practice/index.php?root=Games">Games</a>
+                <a class="left-head-anchors" href="javascript:response(`/practice/games.php?root=Games`,``,`GET`)">Games</a>
                 <div>
                     <div class="dropdown">
                     <?php 
@@ -25,7 +25,7 @@
                         while($row_games=mysqli_fetch_array($r_games))
                         {
                     ?>
-                        <a class="left-head-anchors" href="/practice/index.php?category=<?php  echo $row_games['genre']; ?>">
+                        <a class="left-head-anchors" href="javascript:<?php ajax_call('/practice/games.php','?category='.$row_games['genre'],'GET'); ?>">
                             <?php  echo $row_games['genre']; ?>
                         </a>
                     <?php

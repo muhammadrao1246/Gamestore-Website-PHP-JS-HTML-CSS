@@ -29,13 +29,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gamology</title>
     <link rel="stylesheet" type="text/css" href="/practice/root-styles/style.css" />
-    <link rel="stylesheet" type="text/css" href="post-styles.css" />
+    <link rel="stylesheet" type="text/css" href="/practice/pages/games/post/post-styles.css" />
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        var items=<?php echo $num; ?>;
+        
+        var limit=Math.ceil(items/3);
+        var section_number=0;
+        var i=0;
+        //first slider items printing initially
+        function default_slider()
+        {
+            for (i; i < 3; i++) 
+            {
+                section_number++;
+                if(!!document.getElementById('item'+(i)))
+                {
+                    document.getElementById('item'+(i)).style.display="grid";
+                }
+                else
+                {
+                    document.getElementById('slider-container').style.display="none";
+                }    
+            }
+        }
+        default_slider();
+
+        function load_slider(path) 
+        {
+            if(path=="<" && i>=3 && limit > 1) 
+            {
+                section_number--;
+                let l=i-3;
+                
+                for (i; i > l; i--) 
+                {
+                    if(!!document.getElementById('item'+(i)))
+                    {
+                        document.getElementById('item'+(i)).style.display="none";
+                    }
+                }
+                if(i<=3)default_slider();
+            } 
+            if(path==">" && i<=(items-1) && limit>1)
+            {
+                section_number++;
+                let l=i+3;
+
+                for (i; i < l; i++) 
+                {
+                    if(!!document.getElementById('item'+(i)))
+                    {
+                        document.getElementById('item'+(i)).style.display="grid";
+                    }
+                }
+                if(i>=items)i--;
+                
+            }
+        }
+    </script>
 </head>
 <body>
-    <?php
-        include "/xampp/htdocs/practice/handlers/header.php";
-    ?>
+    
 
     <div class="section">
     <?php
@@ -120,7 +175,7 @@
             <div class="post">
             <h2>Recomended For You</h2>
                 <div class="slider">
-                    <a class="slider-left-arrow arrow" onclick="load_slider('<');">❮</a>
+                    <a class="slider-left-arrow arrow" onclick="javascript:load_slider('<');">❮</a>
                     <div class="item-container">
                             <?php
                             $i=0;
@@ -146,7 +201,7 @@
                             ?>
                     </div>
 
-                    <a class="slider-right-arrow arrow" onclick="load_slider('>');">❯</a>
+                    <a class="slider-right-arrow arrow" onclick="javascript:load_slider('>');">❯</a>
                 </div>
             </div>
         </div>
@@ -154,62 +209,6 @@
 
 
 
-    <script>
-        var items=<?php echo $num; ?>;
-        var limit=Math.ceil(items/3);
-        var section_number=0;
-        var i=0;
-        //first slider items printing initially
-        function default_slider()
-        {
-            for (i; i < 3; i++) 
-            {
-                section_number++;
-                if(!!document.getElementById('item'+(i)))
-                {
-                    document.getElementById('item'+(i)).style.display="grid";
-                }
-                else
-                {
-                    document.getElementById('slider-container').style.display="none";
-                }    
-            }
-        }
-        default_slider();
-
-        function load_slider(path) 
-        {
-            if(path=="<" && i>=3 && limit > 1) 
-            {
-                section_number--;
-                let l=i-3;
-                
-                for (i; i > l; i--) 
-                {
-                    if(!!document.getElementById('item'+(i)))
-                    {
-                        document.getElementById('item'+(i)).style.display="none";
-                    }
-                }
-                if(i<=3)default_slider();
-            } 
-            if(path==">" && i<=(items-1) && limit>1)
-            {
-                section_number++;
-                let l=i+3;
-
-                for (i; i < l; i++) 
-                {
-                    if(!!document.getElementById('item'+(i)))
-                    {
-                        document.getElementById('item'+(i)).style.display="grid";
-                    }
-                }
-                if(i>=items)i--;
-                
-            }
-        }
-
-    </script>
+    
 </body>
 </html>
