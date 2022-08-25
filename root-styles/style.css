@@ -52,12 +52,23 @@ body{
     display:flex;
     background-color: white;
 }
+.add-space-between-arrow{
+    column-gap: 10px;
+}
 .left-header{
     display:flex;
     padding:inherit;
     column-gap: 15px;
     width:60%;
 }
+
+.rotate-arrow-container{
+    transition: 0.3s all;
+    transform: rotate(-270deg);
+}
+
+
+
 .right-header{
     display: flex;
     padding:inherit;
@@ -71,6 +82,7 @@ a{
 .left-head-anchors{
     padding: 8px 7px;
     text-decoration: none;
+    display: flex;
     font: 22px calibri;
     border-radius: 2px ;
     transition:all 0.3s ease-out;
@@ -79,6 +91,10 @@ a{
     background-color: black;
     color: white;
     transition:all 0.2s ease-in;
+}
+.left-head-anchors:nth-child(1):hover .rotate-arrow-container{
+    transform: rotate(-450deg);
+    transition: 0.3s all ease-in-out;
 }
 .right-head-anchor{
     padding: 8px 18px;

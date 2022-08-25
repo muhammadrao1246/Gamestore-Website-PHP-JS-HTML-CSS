@@ -121,3 +121,31 @@ p::after{
 .create-anchor{
     float:right;
 }
+
+
+
+/* CROPPING TOOL EMBEDDING STYLES */
+
+
+.tool-container{
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 0px;
+    flex-direction: column;
+    width: -webkit-fill-available;
+    background-color: rgb(255, 255, 255,0.5);
+    backdrop-filter: blur(5px);
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.tool-section{
+    padding: 40px 10%;
+    border-radius: 30px;
+    background-color: white;
+    display: flex; 
+}

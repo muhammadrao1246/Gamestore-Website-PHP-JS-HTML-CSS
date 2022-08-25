@@ -1,5 +1,5 @@
 <?php
-include "handlers/connect.php";
+include "/xampp/htdocs/practice/handlers/connect.php";
 // Some pre uploading configuration you have to make in your xampp server config filesize
 // -   open apache->config-> php.ini
 //     => search "file_uploads=on" turn on 
@@ -29,11 +29,15 @@ if (isset($_POST['submit'])) {
     $pic_path = $destination = 'uploads/' . $image_name;
 
     if (!file_exists($image_name)) {
+        
         move_uploaded_file($temp_name, $destination);
+        
         $id = $_POST['id'];
         $query = "INSERT INTO upload_by_path values($id,'$destination')";
         mysqli_query($con, $query);
     }
+
+
 
     // $path_info=pathinfo($temp_name,PATHINFO_ALL); //extension dirname name 
     // $arr='<br>';

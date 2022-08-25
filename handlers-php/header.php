@@ -9,7 +9,7 @@
     {
         
     }
-
+$header_flag=1;
 ?>
 
 
@@ -17,7 +17,14 @@
         <div class="left-header">
             <a class="left-head-anchors" href="/practice/index.php?root=Home">Home</a>
             <div name="games" id="games-section">
-                <a class="left-head-anchors" href="javascript:response(`/practice/games.php?root=Games`,``,`GET`)">Games</a>
+                <div style="display: flex;width:min-content;">
+                    <a  class="left-head-anchors add-space-between-arrow" href="/practice/games.php?root=Games">
+                        Games 
+                        <div>
+                            <div class="rotate-arrow-container">»</div>
+                        </div>
+                    </a>
+                </div>
                 <div>
                     <div class="dropdown">
                     <?php 
@@ -25,7 +32,7 @@
                         while($row_games=mysqli_fetch_array($r_games))
                         {
                     ?>
-                        <a class="left-head-anchors" href="javascript:<?php ajax_call('/practice/games.php','?category='.$row_games['genre'],'GET'); ?>">
+                        <a class="left-head-anchors"  href="javascript:<?php ajax_call('/practice/games.php','?category='.$row_games['genre'].'&header_flag='.$header_flag,'GET'); ?>;">
                             <?php  echo $row_games['genre']; ?>
                         </a>
                     <?php
@@ -50,7 +57,9 @@
     </div>
 
 <script>
+
     
+
     var image = document.getElementsByClassName('profile-picture')[0];
 
     image.onload = set_position();

@@ -1,66 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="crop.css">
-    <title>Document</title>
 
-</head>
-<body style="margin: 0;">
-
-
-
-
-
-<div class="cropping-container" >
-
-    <div class="cropper">
-        <div class="loader-1">
-            <span>Loading</span>
-            <span class="rotate-animation">⟲</span>
-        </div>
-        <img src="" alt="" class="target" >
-        <div draggable="true" class="resizable border-animation"></div>
-    </div>
-
-    <div class="processed">
-        
-        <input type="file" id="upload">
-        
-        <h4>Cropped Image !</h4>
-        
-        <div class="cropper" style="overflow: hidden;width: 162px;height: 162px;align-items: unset;">
-            <div class="loader-1 loader-2">
-                <span>Loading</span>
-                <span class="rotate-animation">⟲</span>
-            </div>
-            <img src=""  alt="" class="target cropped_picture_container">
-            <div class="cropped-image " id="capture"></div>
-        </div>
-        
-        <div class="movement-handlers">
-            <button class="left">❮</button>
-            <div class="up-down">
-                <button class="up" >❯</button>
-                <button class="down" >❯</button>   
-            </div>
-            <button class="right">❯</button>
-        </div>
-    </div>
-</div>
-
-<div class="clone-storage" style="display: none;">
-
-</div>
-
-<div class="clone-source" style="display: none;">
-
-</div>
-
-
-<script>
 
     //initializing both picture containers 
     var crop_tool_window=document.getElementsByClassName('cropping-container')[0];
@@ -173,33 +111,128 @@
 
         //making visible moving div
         moving_div.style.display="block";
+
+        //setting div movement handlers to 0
+        div_top=div_left=0;
     }
 
       
         //movement handlers
-        var left=document.getElementsByClassName('left')[0];
+        var left=document.getElementById('left');
 
-        var right=document.getElementsByClassName('right')[0];
+        var right=document.getElementById('right');
 
-        var up=document.getElementsByClassName('up')[0];
+        var up=document.getElementById('up');
 
-        var down=document.getElementsByClassName('down')[0];
+        var down=document.getElementById('down');
 
     //movement listeners  and calculators  
 
-    function remove_effect(btn) 
+    
+
+    //ondrag move as available pixels
+    // var trigger="";
+    // document.addEventListener('click',e1=>{
+    //     console.log("clicker");
+    //     trigger=e1;
+    // });
+    
+      
+    var pointer="";
+    var prev_x=0;
+    var prev_y=0;
+    moving_div.addEventListener('pointerdown',e=>
     {
-        
-            left.className.replace(btn,"");
-            right.className.replace(btn,"");
-            up.className.replace(btn,""); 
-            down.className.replace(btn,"");
-       
+        console.log("Pointer Down: "+moving_div.style.cursor);
+        moving_div.addEventListener('pointermove',mouse_event_constroller);
+
+    });
+
+    //Onpointerup change cursor
+    moving_div.addEventListener('pointerup',()=>
+    {
+        moving_div.removeEventListener('pointermove',mouse_event_constroller);
+        moving_div.style.cursor="grab";
+        console.log("Pointer Up: "+moving_div.style.cursor);
+    });
+
+    //MOUSE_EVENT_CONTROLLER
+    const mouse_event_constroller=
+    (e1)=>
+        {
+            moving_div.style.cursor="grabbing";
+            
+            console.log("Pointer Move: "+moving_div.style.cursor);
+            pointer=e1;
+            console.log("MOUSE X: "+e1.clientX +" MOUSE Y: "+e1.clientY);
+            if (e1.clientX > prev_x) 
+            {
+                move_right(Number(1));
+            }
+            else if (e1.clientY > prev_y)
+            {
+                move_down(Number(1));
+            }
+            else if( e1.clientX < prev_x )
+            {
+                move_left(Number(1));
+            }
+            else if( e1.clientY < prev_y )
+            {
+                move_up(Number(1));
+            }
+            else if( e1.clientX > prev_x && e1.clientY > prev_y)
+            {
+                move_right(Number(1));
+                move_down(Number(1));
+            }
+            else if( e1.clientX < prev_x && e1.clientY < prev_y )
+            {
+                move_left(Number(1));
+                move_up(Number(1));
+            }
+            else if( e1.clientX > prev_x && e1.clientY < prev_y)
+            {
+                move_right(Number(1));
+                move_up(Number(1));
+            }
+            else if( e1.clientX < prev_x && e1.clientY > prev_y )
+            {
+                move_left(Number(1));
+                move_down(Number(1));
+            }
+            
+            prev_x=e1.clientX;
+            prev_y=e1.clientY;       
+        }
+
+    //onclick move as many pixel
+    
+    function after_single_click_remove_effect() 
+    {
+        setTimeout(() => {
+            remove_effect();
+        }, 300);
     }
+    
+    left.onclick  = () => {    run_at_event({key:"ArrowLeft"});     after_single_click_remove_effect(); };
+    right.onclick = () => {    run_at_event({key:"ArrowRight"});    after_single_click_remove_effect(); };
+    up.onclick    = () => {    run_at_event({key:"ArrowUp"});       after_single_click_remove_effect(); };
+    down.onclick  = () => {    run_at_event({key:"ArrowDown"});     after_single_click_remove_effect(); };
 
     //onhold move as many pixel
     
-    crop_tool_window.onkeydown = (e)=> {run_at_event(e);};
+    function remove_effect() 
+    {
+            left.className=left.className.replace(/( button_on)/g,"");
+            right.className=right.className.replace(/( button_on)/g,"");
+            up.className=up.className.replace(/( button_on)/g,""); 
+            down.className=down.className.replace(/( button_on)/g,"");
+    }
+
+    crop_tool_window.onkeydown = (e) => {   run_at_event(e);            };
+    crop_tool_window.onkeyup   = ( ) => {   remove_effect("nothing");   };
+    
     function run_at_event(e)
     {
         console.log(e.key);
@@ -207,26 +240,21 @@
         {
             if(e.key == 'ArrowUp') {
             move_up(Number(1));
-            remove_effect(/( button_on)/);
-            up.className+=" button_on";
+            if (!(/( button_on)/.test(up.className))) up.className+=" button_on";
             }
             if(e.key == 'ArrowDown') {
                 move_down(Number(1));
-                remove_effect(/( button_on)/);
-                down.className+=" button_on";
+                if (!(/( button_on)/.test(down.className))) down.className+=" button_on";
             }
             if(e.key == 'ArrowLeft') {
                 move_left(Number(1));
-                remove_effect(/( button_on)/);
-                left.className+=" button_on";
+                if (!(/( button_on)/.test(left.className))) left.className+=" button_on";
             }
             if(e.key == 'ArrowRight') {
                 move_right(Number(1));
-                remove_effect(/( button_on)/);
-                right.className+=" button_on";
+                if (!(/( button_on)/.test(right.className))) right.className+=" button_on";
             }
         }
-        
     }
 
     //movement functionality
@@ -244,8 +272,9 @@
         {
             div_left = current_left - 1;
             div_top=current_top;
+            Set_Position_of_moveable_div_and_cropped_container();
         }
-        Set_Position_of_moveable_div_and_cropped_container(); 
+         
     }
     function move_right(inc)
     {
@@ -254,8 +283,8 @@
         {
             div_left = current_left + 1;
             div_top=current_top;
+            Set_Position_of_moveable_div_and_cropped_container(); 
         }
-        Set_Position_of_moveable_div_and_cropped_container(); 
     }
     function move_up(inc)
     {
@@ -264,8 +293,8 @@
         {
             div_top = current_top - 1;
             div_left=current_left;
+            Set_Position_of_moveable_div_and_cropped_container(); 
         }      
-        Set_Position_of_moveable_div_and_cropped_container(); 
     }
     function move_down(inc)
     {
@@ -274,8 +303,8 @@
         {
             div_top = current_top + 1;
             div_left=current_left;
-        }
-        Set_Position_of_moveable_div_and_cropped_container();        
+            Set_Position_of_moveable_div_and_cropped_container(); 
+        }       
     }
 
     function Set_Position_of_moveable_div_and_cropped_container() 
@@ -289,7 +318,3 @@
 
     }
 
-</script>
-
-</body>
-</html>

@@ -8,6 +8,7 @@ function response(filename,variables,method)
         {
                response_dom = request.responseText;
                 document.getElementById('content').innerHTML=response_dom;
+                // document.getElementByClassName("dropdown").style.display = "none";
         }
     });  
 console.log(filename+variables);

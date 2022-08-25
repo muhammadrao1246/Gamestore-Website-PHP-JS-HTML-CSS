@@ -1,7 +1,7 @@
 <?php
-    include "handlers/connect.php";
-    include "handlers/game_data.php";
-    include "handlers/date_approx.php";
+    include "handlers-php/connect.php";
+    include "handlers-php/game_data.php";
+    include "handlers-php/date_approx.php";
 
 ?>
 
@@ -20,12 +20,12 @@
 </head>
 <body>
     <?php
-        include "handlers/header.php";
+        include "handlers-php/header.php";
     ?>
 
     <div class="section">
     <?php
-        include "handlers/breadcrumb.php";
+        include "handlers-php/breadcrumb.php";
     ?>
         <div class="post-container">
             <form action="stop" method="post" class="login-signup-container">

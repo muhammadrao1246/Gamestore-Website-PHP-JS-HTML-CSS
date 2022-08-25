@@ -2,7 +2,11 @@
     display: flex;
     width: 350px;
     align-items: center;
-    background-image: url('images/opaque.png');
+    background-image: url('/practice/images/opaque.png');
+}
+.target{
+    cursor: not-allowed;
+    user-select: none;
 }
 .loader-1{
     display: flex;
@@ -59,16 +63,17 @@
     width: 350px;
     display: none;
     height: max-content;
-    background-image: url(images/opaque.png);
+    background-image: url(/practice/images/opaque.png);
 }
 .cropped-image{
-    background-image: url('images/opaque.png');
+    background-image: url(/practice/images/opaque.png);
     position: absolute;
     width: 160px;
     height: 160px;
     border: 1px solid;
 }
 .resizable{
+    cursor:grab;
     background-color: transparent;
     position: absolute;
     width: 160px;
@@ -78,20 +83,26 @@
 }
 .movement-handlers{
     display: flex;
-    column-gap: 5px;
+    column-gap: 11px;
     width: min-content;
-    align-items: center;
+    align-items: end;
+}
+.left{
+    height: 48px;
+    transform: rotate(-180deg);
 }
 .up-down{
     display: flex;
     flex-direction: column;
     width: min-content;
-    row-gap: 20px;
+    row-gap: 10px;
 }
 .down{
+    width: 42px;
     transform: rotate(90deg);
 }
 .up{
+    width: 33px;
     transform: rotate(-90deg);
 }
 .processed
@@ -113,19 +124,29 @@ input[type='file']{
     padding: 5px;
     background-image: linear-gradient(45deg,white,darkgray);
 }
-button{
+.button{
     background-color: black;
     color: white;
-    padding: 10px 15px;
+    width: 50px;
+    height: 50px;
     border: none;
-    font: 30px calibri;
+    outline-style: groove;
+    outline-width: thick;
+    font: bold 30px u2400;
     transition: 0.3s all;
 }
-button_on{
+
+.button:hover{
+    background-color: white;
+    color: black;
+    outline-color: black;
+    transition: 0.3s all;
+}
+
+.button_on{
     background-color: white;
     color: black;
     transition: 0.5s all;
-    padding: 8px 13px;
 }
 
 .border-animation

@@ -1,5 +1,5 @@
 <?php
-    include "handlers/connect.php";
+    include "handlers-php/connect.php";
     
 ?>
 <!DOCTYPE html>
@@ -10,11 +10,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gamology</title>
     <link rel="stylesheet" type="text/css" href="root-styles/style.css" />
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
 </head>
 <body>
     <?php
-        include "handlers/header.php";    
+        include "handlers-php/header.php";    
     ?>
     <div id="content">
         
@@ -33,7 +33,7 @@
         </div>
     </div> -->
 
- <script src="ajax.js"></script>   
+ <script src="handlers-js/ajax.js"></script>   
  <script id="script" ></script>
 </body>
 </html>
