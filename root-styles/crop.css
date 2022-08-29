@@ -1,7 +1,9 @@
 .cropper{
     display: flex;
     width: 350px;
+    height: 500px;
     align-items: center;
+    border: 2px solid lightgray;
     background-image: url('/practice/images/opaque.png');
 }
 .target{
@@ -16,6 +18,7 @@
     background-color: rgba(255, 255, 255, 0.5);
     align-items: center;
     width: 350px;
+    height: 500px;
     align-self: center;
     height: -webkit-fill-available;
     position: absolute;
@@ -58,6 +61,10 @@
 }
 .cropping-container{
     display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    overflow: hidden;
+    background-image: repeating-linear-gradient(160deg,white 95%,lightgray);
 }
 .cropper > img{
     width: 350px;
@@ -84,7 +91,6 @@
 .movement-handlers{
     display: flex;
     column-gap: 11px;
-    width: min-content;
     align-items: end;
 }
 .left{
@@ -94,7 +100,6 @@
 .up-down{
     display: flex;
     flex-direction: column;
-    width: min-content;
     row-gap: 10px;
 }
 .down{
@@ -110,20 +115,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: min-content;
     row-gap: 20px;
-    padding: 20px;
-    background-image:linear-gradient(black,white,gray);
+    justify-content: space-around;
 }
 .processed > h4{
-    font: normal 20px calibri;
-    padding: 2px 20px;
+    font: normal 24.5px "Pacifico";
+    padding: 0px;
     border-radius: 3px;
-    background-image: linear-gradient(45deg, white 30%, silver);
 }
-input[type='file']{
-    padding: 5px;
-    background-image: linear-gradient(45deg,white,darkgray);
-}
+
 .button{
     background-color: black;
     color: white;
@@ -166,3 +167,36 @@ input[type='file']{
     }
 }
 
+
+.intro-container{
+    padding: 12px 4px;
+    display: block;
+    background-color: #e0e0e0;
+    align-self: center;
+    height: min-content;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.intro-label{
+    margin: 0;
+    padding: 10px;
+    font-family: 'Pacifico';
+    font-weight: normal;
+}
+
+.intro-container > ul{
+    font-family: monospace;
+    font-size: 12px;
+    margin: 0px 10px;
+    padding-left: 30px;
+}
+
+.intro-container > ul > li > i{
+    vertical-align: middle;
+}
+
+.intro-container > ul > li:nth-child(2){
+    line-height: 3;
+    line-break: anywhere;
+}

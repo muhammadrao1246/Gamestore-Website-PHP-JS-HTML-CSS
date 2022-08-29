@@ -21,12 +21,14 @@
     var dummy_image_original=document.getElementsByClassName('target')[1];
 
     //image which is uploaded
-    var uploaded_image=document.getElementById('upload');
+    var uploaded_image=document.getElementById('img');
     
     var actual_width=actual_height=0;
 
+    // import { image_flag } from "signup.js";
+
     //showing uploadded picture in targeted div
-    uploaded_image.onchange = function() 
+    function uploaded_image_controller() 
     {
             loader_flag = 1;
             loader[0].style.display="flex";
@@ -41,17 +43,25 @@
                 uploaded_picture_dimensions();
             }, 1500);
 
-
-            setTimeout(() => {
-                //reset moving divs
-                set_moving_div_initially();
-            }, 2000);
-
-            setTimeout(() => {
-                loader[0].style.display="none";
-                loader[1].style.display="none";
-                loader_flag = 0;
-            }, 4000);
+            if (actual_width > 350 && actual_height > 350) 
+            {
+                // image_flag=1;
+                setTimeout(() => {
+                    //reset moving divs
+                    set_moving_div_initially();
+                }, 2000);
+ 
+                setTimeout(() => {
+                    loader[0].style.display="none";
+                    loader[1].style.display="none";
+                    loader_flag = 0;
+                }, 4000);
+                
+            }
+            else
+            {
+                return -1;
+            }
             
         }
 
@@ -85,8 +95,8 @@
         document.getElementsByClassName('cropper')[1].style.height= Number((cropped_div.getBoundingClientRect().height)) + 'px';
         
         //picture dimensions on view
-        actual_width = picture_width - Number((cropped_div.getBoundingClientRect().width));
-        actual_height = picture_height - Number((cropped_div.getBoundingClientRect().height));
+        actual_width = picture_width;
+        actual_height = picture_height;
     }
 
     //setting moving div position according to the image
@@ -129,15 +139,6 @@
     //movement listeners  and calculators  
 
     
-
-    //ondrag move as available pixels
-    // var trigger="";
-    // document.addEventListener('click',e1=>{
-    //     console.log("clicker");
-    //     trigger=e1;
-    // });
-    
-      
     var pointer="";
     var prev_x=0;
     var prev_y=0;

@@ -1,4 +1,6 @@
 
+// import {  } from "crop.js";
+// var file= new File(2048,'muhammad.txt');
         //Class Declaration for tick & cross
         var tick = "fas fa-check marker marker-green";
         var cross = "fas fa-plus marker marker-red";
@@ -15,6 +17,7 @@
         //Image Validations Robust Algorithm
         var image_flag=0;
         var image_count=0;
+        // export{image_flag};
         img.onchange = () => { validate_images(); };
         function validate_images()
         {
@@ -41,10 +44,30 @@
                     {
                         if (((image[index].size) / 1024) < 5120) 
                         {
-                            image_flag=1;
-                            document.getElementById('p-' + input_names[2]).innerText = "";
-                            document.getElementById('i-' + input_names[2]).className = tick;
-                            document.getElementById('i-' + input_names[2]).title = "Image Selected";
+                            // image_flag=1;
+                            // document.getElementById('p-' + input_names[2]).innerText = "";
+                            // document.getElementById('i-' + input_names[2]).className = tick;
+                            // document.getElementById('i-' + input_names[2]).title = "Image Selected";
+                            
+                            pop_tool();
+
+
+                            image_flag.onchange=
+                            function()
+                            {
+                                if ( image_flag == 1 ) 
+                                {
+                                    document.getElementById('p-' + input_names[2]).innerText = "";
+                                    document.getElementById('i-' + input_names[2]).className = tick;
+                                    document.getElementById('i-' + input_names[2]).title = "Image Selected";
+                                }
+                                else
+                                {
+                                    //Popup for resolution
+                                }
+                            };
+                            
+
                         } 
                         else 
                         {
@@ -77,6 +100,46 @@
                 document.getElementById('i-' + input_names[2]).className = cross;
                 document.getElementById('i-' + input_names[2]).title = "Image Not Selected";  
             }
+        }
+
+        //Cropping Tool Window Config
+        var change_picture = document.getElementsByClassName('change-picture')[0];
+        var crop = document.getElementsByClassName('crop')[0];
+        var timeline = "";
+        
+        crop.addEventListener('click',reverse_tool);
+
+        function run_tool() 
+        {
+                image_flag=uploaded_image_controller();
+                console.log('finish');
+        }
+
+        function pop_tool() 
+        {
+            timeline=gsap.timeline();
+            timeline = gsap.timeline({default:{duration:8},onStart:()=>{console.log('start');},onComplete:()=>{run_tool();}});
+
+            timeline
+                .fromTo('.tool-container',{x:'-1',display:"none",backdropFilter:"blur(0px)",backgroundColor:"transparent"},
+                        {x:0,display:"flex",backdropFilter:"blur(5px)",backgroundColor:"rgb(255, 255, 255,0.5)",duration:2,ease:"slow"})
+                .from('.tool-section',{scale:0,opacity:0,duration:3,ease:"elastic.out(1,1)"})
+                .from('.cropping-container',{opacity:0,duration:1,ease:"expo"},3)
+                .from('.from-left',{x:"-100%",duration:2,ease:"elastic.out(0.5,0.8)"},"<")
+                .from('.from_right',{x:"100%",duration:2,ease:"elastic.out(0.5,0.8)"},'>-2')
+                .fromTo('.button',{y:"100%",scale:0},{y:0,scale:1,duration:1,stagger:0.5,ease:"elastic.out(1,1)"},"<0.1")
+                .from('.tool-label',{y:"-100%",opacity:0,duration:1,ease:"bounce.out"},">-1.5")
+                .from('.intro-container',{scale:0,duration:1,ease:"bounce"},"<1.5")
+                .from('.list',{x:"-100%",opacity:0,duration:2,stagger:0.5,ease:"elastic.out(0.5,0.8)"},"<1")
+                .fromTo('.change-picture',{x:"-100vw",scale:0},{x:0,scale:1,duration:2,ease:"elastic.out(1,0.5)"},5.5)
+                .fromTo('.crop',{x:"-100vw",scale:0},{x:0,scale:1,duration:2,ease:"elastic.out(1,0.5)"},5);
+                      
+        }
+        
+        function reverse_tool() 
+        {
+            timeline.timeScale(3);
+            timeline.reverse();
         }
         
         //Password Validation

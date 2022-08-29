@@ -129,7 +129,8 @@ p::after{
 
 .tool-container{
     position: fixed;
-    display: flex;
+    display: none;
+    scale: 1;
     justify-content: center;
     align-items: center;
     padding: 40px 0px;
@@ -144,8 +145,48 @@ p::after{
 }
 
 .tool-section{
-    padding: 40px 10%;
     border-radius: 30px;
     background-color: white;
     display: flex; 
+    flex-direction: column;
+    row-gap: 10px;
+    width: 70%;
+    border: 2px solid cadetblue;
+    padding: 20px 3%;
+}
+
+.tool-button-section{
+    display: flex;
+    column-gap: 20px;
+    justify-content: end;
+}
+
+.change-picture{
+    font: 17px calibri;
+    background-color: white;
+    color: red;
+    outline: none;
+    border: 2px solid red;
+    font-weight: bolder;
+    border-radius: 3px;
+    padding: 5px 10px;
+    transition: 0.3s all;
+}
+
+.crop{
+    font: 17px calibri;
+    background-color: white;
+    color: green;
+    outline: none;
+    border: 2px solid green;
+    font-weight: bolder;
+    border-radius: 3px;
+    padding: 5px 10px;
+    transition: 0.3s all;
+}
+
+.tool-button-section > button:hover{
+    border: 2px solid black;
+    color: black;
+    transition: 0.3s all;
 }
