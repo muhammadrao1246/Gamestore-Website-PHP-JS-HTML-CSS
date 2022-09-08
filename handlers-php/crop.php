@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/practice/root-styles/crop.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
     <title>Crop Tool</title>
 
 </head>
@@ -30,10 +29,10 @@
         <h3 class="intro-label">Instructions</h3>
         <ul type="circle">
             <li class="list">
-                Use mouse <i class="material-icons">mouse</i> to drag cropped box.
+                Use mouse <i class="material-icons"> <?php include "/xampp/htdocs/practice/assets/icons/mouse.svg" ?> </i> to drag cropped box.
             </li>
             <li class="list-space list">
-                Use keyboard <i class="material-icons">keyboard</i> arrow keys to move.
+                Use keyboard <i class="material-icons"> <?php include "/xampp/htdocs/practice/assets/icons/keyboard.svg" ?> </i> arrow keys to move.
             </li>
             <li class="list">
                 Click on arrow buttons to move cropped box.

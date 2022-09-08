@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gamology</title>
     <link rel="stylesheet" type="text/css" href="root-styles/style.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+    <script src="libraries/gsap-public/minified/gsap.min.js"></script>
 </head>
 <body>
     <?php

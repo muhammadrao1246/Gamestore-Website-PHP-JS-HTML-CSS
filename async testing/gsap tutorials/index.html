@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/root-styles/crop.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pacifico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>Crop Tool</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+</head>
+<body style="margin: 0;">
+
+
+
+
+
+<div class="cropping-container" style=" width: 85%;height:500px;margin: auto;margin-top: 50px;">
+
+    <div class="cropper">
+        
+        <img src="" alt="" class="target" draggable="false">
+        <div draggable="false" class="resizable border-animation"></div>
+    </div>
+    <div class="intro-container" style="overflow: hidden;">
+        <h3 class="intro-label">Instructions</h3>
+        <ul type="circle">
+            <li class="list">
+                Use mouse <i class="material-icons">mouse</i> to drag cropped box.
+            </li>
+            <li class="list-space list">
+                Use keyboard <i class="material-icons">keyboard</i> arrow keys to move.
+            </li>
+            <li class="list">
+                Click on arrow buttons to move cropped box.
+            </li>
+        </ul>
+    </div>
+    <div class="processed">
+        
+
+        
+        <h4>Cropped Image !</h4>
+        
+        <div class="cropper" style="overflow: hidden;width: 162px;height: 162px;align-items: unset;">
+            
+            <img src=""  alt="" class="target cropped_picture_container">
+            <div class="cropped-image " id="capture"></div>
+        </div>
+        
+        <div class="movement-handlers">
+            <button id="left" class="button buttons">
+                <div class="left">
+                    ➜
+                </div>
+            </button>
+            <div class="up-down">
+                <button id="up" class="button buttons">
+                    <div class="up">➜</div>
+                </button>
+                <button id="down" class="button buttons">
+                    <div class="down">➜</div>
+                </button>   
+            </div>
+            <button id="right" class="button buttons">➜</button>
+        </div>
+    </div>
+</div>
+<button onclick="reverse()">reverse all</button>
+
+<script>
+    // gsap.from('.cropping-container',
+    //             {scale:0,duration:2,ease: "bounce"}
+    //             );
+    
+    // gsap.from('h4',
+    //         {y:"-100%",opacity:0,delay:2,duration:1,ease:"bounce"});
+    
+    // gsap.fromTo('.buttons',
+    //         {scale:0,delay:0},{scale:1,delay:1,duration:2,stagger:0.5});
+    
+    // gsap.from('.intro-container',
+    //         {scale:0,delay:5,duration:1,ease:"bounce"});
+    // gsap.from('.list',
+    //         {delay:6,x:"-100vw",duration:1,ease:"elastic.out(1,0.5)"});
+
+    var timeline=gsap.timeline({default:{duration:3},repeatRefresh:true,repeatDelay:1,yoyo:true,repeat:-1});
+    timeline
+        .from('.cropping-container',{scale:0,duration:2,ease: "elastic.out(1,0.75)"})
+        .from('h4',{y:"-100%",opacity:0,duration:1,ease:"bounce"})
+        .fromTo('.buttons',{x:-1,scale:0},{x:0,scale:1,duration:1,stagger:0.5,ease:"bounce"},'<')
+        .from('.intro-container',{scale:0,duration:1,ease:"bounce"},3)
+        .from('.list',{x:"-100vw",duration:1,ease:"elastic.out(0.5,0.3)"},'<1');
+
+        function reverse() {
+            timeline.timeScale(3);
+            timeline.reverse();
+        }
+
+</script>
+</body>
+</html>

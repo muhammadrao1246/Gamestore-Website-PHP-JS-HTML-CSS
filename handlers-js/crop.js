@@ -25,7 +25,26 @@
     
     var actual_width=actual_height=0;
 
+    var flag = 0;
     // import { image_flag } from "signup.js";
+
+    function reset_uploaded_image_controller() 
+    {
+        //flag reset
+        loader_flag = 0;
+        flag = 0;
+
+        //property reset
+            loader[0].style.display="none";
+            loader[1].style.display="none";
+
+            moving_div.style.display="none";
+
+            target_image.style.display="none";
+            dummy_image_original.style.display="none";
+            
+            cropped_div.style.backgroundImage = "url(/practice/assets/images/opaque.png)";
+    }
 
     //showing uploadded picture in targeted div
     function uploaded_image_controller() 
@@ -39,29 +58,36 @@
             
             
             //getting width and height
-            setTimeout(() => {
+            setTimeout(() => 
+            {
                 uploaded_picture_dimensions();
             }, 1500);
-
-            if (actual_width > 350 && actual_height > 350) 
+            
+            setTimeout(() => {
+            if (target_image.naturalWidth > 350 && target_image.naturalHeight > 350) 
             {
                 // image_flag=1;
-                setTimeout(() => {
-                    //reset moving divs
+                flag = 1;
+                //reset moving divs
                     set_moving_div_initially();
-                }, 2000);
- 
-                setTimeout(() => {
-                    loader[0].style.display="none";
-                    loader[1].style.display="none";
-                    loader_flag = 0;
-                }, 4000);
-                
             }
             else
             {
-                return -1;
+                flag = -1;
+                console.log('not accepted');
             }
+
+            }, 2000);
+
+            //remove loader
+            setTimeout(() => {
+                if (flag == 1) 
+                {
+                    loader[0].style.display="none";
+                    loader[1].style.display="none";
+                    loader_flag = 0;   
+                }
+            }, 3000);
             
         }
 
@@ -105,20 +131,39 @@
         
         console.log('Left: '+left_limit+' Top: '+top_limit+' bottom: '+bottom_limit+' right: '+right_limit);
 
-        left_limit = current_left = Number(target_image.getBoundingClientRect().left);
-        top_limit  = current_top = Number(target_image.getBoundingClientRect().top);
 
-        bottom_limit = actual_height + Number(target_image.getBoundingClientRect().top);
-        right_limit = actual_width + Number(target_image.getBoundingClientRect().left);
+        //limits of being cropped pcture in multiple containers
+        left_limit_picture = Number(target_image.getBoundingClientRect().left);
+        top_limit_picture  = Number(target_image.getBoundingClientRect().top);
+
+        bottom_limit_picture = actual_height + Number(target_image.getBoundingClientRect().top);
+        right_limit_picture = actual_width + Number(target_image.getBoundingClientRect().left);
         
+        //making positions limits for moveable div
+        
+        top_limit = current_top = (top_limit_picture - document.getElementsByClassName('cropper')[0].getBoundingClientRect().top) -2;
+        left_limit = current_left = (left_limit_picture - document.getElementsByClassName('cropper')[0].getBoundingClientRect().left) -2;
+        setTimeout(() => {
+            bottom_limit = (( target_image.getBoundingClientRect().height ) + top_limit) - moving_div.getBoundingClientRect().height;
+            right_limit = (( target_image.getBoundingClientRect().width ) + left_limit) - moving_div.getBoundingClientRect().height;        
+        }, 500);
+
+
         console.log('Left: '+left_limit+' Top: '+top_limit+' bottom: '+bottom_limit+' right: '+right_limit);
+       
+        setTimeout(() => {
+            //set in the middle
+            current_left = (target_image.getBoundingClientRect().width - moving_div.getBoundingClientRect().height)  / 2;
+            current_top  = ( (target_image.getBoundingClientRect().height - moving_div.getBoundingClientRect().height)/2 + top_limit);
+            moving_div.style.left = current_left + 'px';
+            moving_div.style.top  = current_top  + 'px';
+        }, 300);
+
+        setTimeout(() => {
+            //crooped sector visible
+            dummy_image_original.style.objectPosition="-"+(current_left - left_limit)+"px -"+(current_top - top_limit)+"px";
+        }, 300);
         
-        moving_div.style.left = current_left + 'px';
-        moving_div.style.top  = current_top  + 'px';
-
-        //crooped sector visible
-        dummy_image_original.style.objectPosition="-"+(current_left - left_limit)+"px -"+(current_top - top_limit)+"px";
-
         //making visible moving div
         moving_div.style.display="block";
 
@@ -259,11 +304,15 @@
     }
 
     //movement functionality
+    function fetch_position_of_style_dimensions( dim ) 
+    {
+        return Number(dim.replace('px',''));
+    }
 
     function get_current_position() 
     {
-        current_top=  Number(moving_div.getBoundingClientRect().top);
-        current_left= Number(moving_div.getBoundingClientRect().left); 
+        current_top  = fetch_position_of_style_dimensions(moving_div.style.top);
+        current_left = fetch_position_of_style_dimensions(moving_div.style.left); 
     }
 
     function move_left(inc)

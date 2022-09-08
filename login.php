@@ -16,7 +16,9 @@
     <link rel="stylesheet" type="text/css" href="pages/games/post/post-styles.css" />
     <link rel="stylesheet" type="text/css" href="root-styles/login-signup-styles.css" />
     
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> -->
+    <script src="libraries/fontawesome-free-5.15.4-web/js/all.min.js"></script>
+    <script src="libraries/gsap-public/minified/gsap.min.js"></script>
 </head>
 <body>
     <?php

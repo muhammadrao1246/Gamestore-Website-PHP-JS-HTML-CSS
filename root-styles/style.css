@@ -37,7 +37,7 @@ body{
     scroll-behavior: smooth;
     overflow-x: hidden;
     margin:0;
-    background-image:url("/practice/images/john wick.jpg") ;
+    background-image:url("../assets/images/john wick.jpg");
     background-position: center;
     background-repeat: unset;
     background-attachment: fixed;
@@ -48,6 +48,7 @@ body{
 .header{
     position:sticky;
     top: 0;
+    z-index: 1;
     padding:10px 20px;
     display:flex;
     background-color: white;

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Reader Api with Text</title>
+</head>
+<body>
+    <h3>File Reader Api Reading Text From Uploading File</h3>
+    <input type="file" id="file">
+    <div id="content"></div>
+    <script>
+        var content = document.getElementById('content');
+
+        var file= document.getElementById('file');
+
+        var arr = null;
+
+        var file_reader = new FileReader;
+
+
+        file.addEventListener('change',()=>{
+            console.log('uploaded')
+            if (typeof(file_reader)) 
+            {
+                file_reader.onload=function(){
+                    content.innerHTML = file_reader.result;
+                    
+                    //JSON PARSER
+                    // arr = JSON.parse( file_reader.result);
+                    // console.log(arr);
+
+                    //CSV PARSER
+                    // console.log(file_reader.result.split('\n').map(function(line){
+                    //     return line.split(',');
+                    // }))
+                    // arr = file_reader.result.split('\n').map(function(line){return line.split(',');});
+                    // display_csv(arr);
+
+                    //Image Parser
+                    //=====> Read Image URL and Display an Image on page by ReadASDATAURL
+                    // var img = new Image;
+                    // img.onload = function(){
+                    //     //when image is rendered on page
+                    // }
+                    // img.src = arr;
+                    // img.width=350;
+                    // document.body.append(img);
+                    
+                    var arr = file_reader.result; //result in the form of url or text
+                    
+                    
+
+
+                    
+                }   
+                file_reader.onprogress=()=>{console.log('loading file')}
+                file_reader.readAsDataURL(file.files[0]) //read encoded data against content of any file & translates in data/*:format
+
+                // file_reader.readAsText(file.files[0]) //read content of file in a text sequence
+            }
+        })
+
+        function display_csv(arr) 
+        {
+          var table = "<table border=1 cellpadding=5 cellspacing=0 style=\"width:100%;overflow:auto;left:0;position:absolute;\">";
+            table+="<tr>";
+            arr[0].forEach(col => {
+                table+="<th>"+col+"</th>";
+            });   
+            table+="</tr>";
+
+            arr.forEach(row => {
+                table += "<tr>";
+                row.forEach(field => {
+                    table += "<td>"+field+"</td>";
+                });
+                table += "</tr>";
+            });
+
+            table += "</table>";
+
+            document.body.innerHTML+=(table);
+        }
+
+        function office() {
+            
+        }
+    </script>
+</body>
+</html>

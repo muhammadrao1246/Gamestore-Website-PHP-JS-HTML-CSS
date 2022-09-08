@@ -30,7 +30,8 @@
     <title>Gamology</title>
     <link rel="stylesheet" type="text/css" href="/practice/root-styles/style.css" />
     <link rel="stylesheet" type="text/css" href="/practice/pages/games/post/post-styles.css" />
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> -->
+    <script src="../../../libraries/fontawesome-free-5.15.4-web/js/all.min.js"></script>
 </head>
 <body>
     <?php

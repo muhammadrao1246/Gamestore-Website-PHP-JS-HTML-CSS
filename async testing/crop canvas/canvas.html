@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+<script>
+
+var canvas = document.createElement('canvas');
+                    var ctx = canvas.getContext('2d');
+// canvas.width=350;
+// canvas.height=162;
+
+
+var box_percentage=46.2857143;
+var cur_w=(img.naturalWidth/100)*(box_percentage);
+var x=(img.naturalWidth/100)*((94/img.width)*100);
+var y=(img.naturalHeight/100)*((17.4375/img.height)*100);
+canvas.width=img.naturalWidth;
+canvas.height=img.naturalHeight;
+
+                    ctx.drawImage(img,0,0);
+
+
+
+                    var imagedata= ctx.getImageData(x,y,cur_w,cur_w);
+                    console.log(imagedata);
+                    
+                    var newimg;
+                    newimg=canvas.toDataURL();
+                    console.log(newimg);
+                    
+                    //second canvas to hold cropped area
+                    var cropped= document.createElement('canvas');
+                    croppped_ctx= cropped.getContext('2d');
+                    
+                        cropped.width=cur_w;
+                        cropped.height=cur_w;
+
+                    croppped_ctx.putImageData(imagedata,0,0);
+                    document.body.append(cropped);
+</script>                   
+
+</body>
+</html>

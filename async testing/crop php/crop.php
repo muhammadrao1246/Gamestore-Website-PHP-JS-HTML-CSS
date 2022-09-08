@@ -1,5 +1,5 @@
 <?php
-include "/xampp/htdocs/practice/handlers/connect.php";
+include "/xampp/htdocs/practice/handlers-php/connect.php";
 // Some pre uploading configuration you have to make in your xampp server config filesize
 // -   open apache->config-> php.ini
 //     => search "file_uploads=on" turn on 
@@ -42,8 +42,9 @@ if (isset($_POST['submit']))
         $height = imagesy($cropped);
 $box_percentage=46.2857143;
 $cur_w=($width/100)*($box_percentage);
-$x=($width/100)*((175/350)*100);
-$y=($height/100)*((23/197)*100);
+$x=($width/100)*((94/350)*100);
+$y=($height/100)*((17.4375/197)*100);
+
 
         $cropped = 
         imagecrop
@@ -71,7 +72,8 @@ $y=($height/100)*((23/197)*100);
         // ]
         // );
 
-        imagejpeg($cropped,'Cropped.jpeg');
+
+        imagepng($cropped,'Cropped.png');
         
     // }
 

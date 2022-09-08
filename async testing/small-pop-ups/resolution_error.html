@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../libraries/font-awesome/all.min.js"></script>
+    <style>
+        /* @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap'); */
+        @font-face {
+            font-family: kanit;
+            src: url(../../assets/fonts/Kanit-Regular.ttf);
+        }
+        @font-face {
+            font-family: pacifico;
+            src: url(../../assets/fonts/Pacifico-Regular.ttf);
+        }
+        .error-container{
+            display: flex;
+            width: 350px;
+            border-radius: 20px;
+            flex-direction: column;
+            margin: auto;
+            border: 2px solid #a8a8a8;
+            box-shadow: 0px 0px 20px -7px #a8a8a8;
+        }
+        .cancel-icon{
+            display: flex;
+            justify-content: end;
+        }
+        .cancel{
+            font: 20px calibri;
+            color: lightgray;
+            margin: 10px;
+            padding: 0;
+            border: none;
+            background: none;
+            margin-right: 15px;
+            width: min-content;
+            height: 25px;
+            transition: 0.2s all;
+        }
+        
+        .cancel:hover{
+            color: darkgray;
+            transition: 0.2s  all;
+        }
+        .cancel-hover{
+            rotate: 45deg;
+        }
+        .error-icon{
+            display: flex;
+            justify-content: center;
+        }
+        .error-text{
+            font: 15px kanit;
+            padding: 20px;
+            text-align: center;
+            line-break: auto;
+            color: #443c3c;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="error-container">
+        <div class="cancel-icon">
+            <button class="cancel">
+                    <i role="button" class="fas fa-plus cancel-hover"></i>
+            </button>
+        </div>
+        <div class="error-icon">
+            <div class="icon-container">
+                <svg height="32" style="overflow:visible;width: 60px !important;height: min-content;enable-background:new 0 0 32 32" viewBox="0 0 32 32" width="32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g><g id="Error_1_"><g id="Error"><circle cx="16" cy="16" id="BG" r="16" style="fill:#D72828;"/><path d="M14.5,25h3v-3h-3V25z M14.5,6v13h3V6H14.5z" id="Exclamatory_x5F_Sign" style="fill:#E6E6E6;"/></g></g></g></svg>
+            </div>
+        </div>
+        <div class="error-text">
+            <i class="fas fa-plus"></i>
+            Image Resolution Not Supported !<br>Try Greater Than 350 x 350
+        </div>
+    </div>
+
+    
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/js/all.min.js" crossorigin="anonymous"></script> -->
+</body>
+</html>
